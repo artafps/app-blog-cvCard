@@ -8,10 +8,10 @@ const MainLayoutAdmin = (Props) => {
     const [fullName, setFullName] = useState('');
     const [OPEN, setOPEN] = useState(true);
     const navigate = useNavigate()
+    const { pathname } = useLocation();
     const OwnerName = localStorage.getItem('Owner');
     const accessToken = localStorage.getItem('AC');
     const ClassicToken = localStorage.getItem('CT');
-    const { pathname } = useLocation();
     useEffect(() => {
         const fetchFullName = async () => {
             try {
@@ -82,7 +82,7 @@ const MainLayoutAdmin = (Props) => {
                         <li className="sidebar-title">
                             Apps
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/dashboard' ? "active-page" : ''}>
+                        <li style={{ cursor: 'pointer' }} className={pathname.split('/')[1] === 'dashboard' ? "active-page" : ''}>
                             <a onClick={() => navigate('/dashboard')} className={pathname === '/dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
                         </li>
                         <li style={{ cursor: 'pointer' }} className={pathname === '/file-manager' ? "active-page" : ''}>
