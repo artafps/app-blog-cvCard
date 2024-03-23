@@ -12,37 +12,36 @@ const Dashboard = (Props) => {
                     <i className="material-icons">menu</i> content
                 </a>
                 <ul class="dropdown-menu list-unstyled content-menu " aria-labelledby="dropdownMenuLink">
-                    <li><a onClick={() => { navigate('/Header&Footer') }} className="active">Header & Footer</a></li>
-                    <li><a onClick={() => { navigate('/DonateBTNS') }} >Donate Button & Social Media</a></li>
-                    <li><a onClick={() => { navigate('/SliderS') }} >Slider</a></li>
-                    <li><a onClick={() => { navigate('/LanguageBoxS') }} >Language Box</a></li>
-                    <li><a onClick={() => { navigate('/About&Content-Us') }} >About & Content - Us</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/Header&Footer') }} className={pathname.split('/')[2] === 'Header&Footer' ? "active" : null} >Header & Footer</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/SliderS') }} className={pathname.split('/')[2] === 'SliderS' ? "active" : null}  >Slider</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/DonateBTNS') }} className={pathname.split('/')[2] === 'DonateBTNS' ? "active" : null}  >Donate Button</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/LanguageBoxS') }} className={pathname.split('/')[2] === 'LanguageBoxS' ? "active" : null} >Language Box</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/About&Content-Us') }} className={pathname.split('/')[2] === 'About&Content-Us' ? "active" : null}  >About & Content - Us</a></li>
                     <li className="divider" />
-                    <li><a onClick={() => { navigate('/PlanS') }} >How Work Plans</a></li>
-                    <li><a onClick={() => { navigate('/News') }} >News</a></li>
-                    <li><a onClick={() => { navigate('/ProjectS') }} >Project</a></li>
-                    <li><a onClick={() => { navigate('/Blogs') }} >Blogs</a></li>
-                    <li><a onClick={() => { navigate('/Labels&Categorys') }} >Labels & Categorys</a></li>
-                    <li><a onClick={() => { navigate('/MyTeamS') }} >My Team</a></li>
-                    <li className="divider" />
-                    <li><a onClick={() => { navigate('/Change-Language-Web') }} >Change Language Web</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/News') }} className={pathname.split('/')[2] === 'News' ? "active" : null} >News</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/Blogs') }} className={pathname.split('/')[2] === 'Blogs' ? "active" : null} >Blogs</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/ProjectS') }} className={pathname.split('/')[2] === 'ProjectS' ? "active" : null} >Project</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/MyTeamS') }} className={pathname.split('/')[2] === 'MyTeamS' ? "active" : null} >My Team</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/PlanS') }} className={pathname.split('/')[2] === 'PlanS' ? "active" : null} >How Work Plans</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/Labels&Categorys') }} className={pathname.split('/')[2] === 'Labels&Categorys' ? "active" : null} >Labels & Categorys</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/Change-Language-Web') }} className={pathname.split('/')[2] === 'Change-Language-Web' ? "active" : null} >Change Language Web</a></li>
                 </ul>
             </div>
             <div className="content-menu content-menu-right ps">
                 <ul className="list-unstyled">
-                <li><a onClick={() => { navigate('/Header&Footer') }} className="active">Header & Footer</a></li>
-                    <li><a onClick={() => { navigate('/SliderS') }} >Slider</a></li>
-                    <li><a onClick={() => { navigate('/DonateBTNS') }} >Donate Button</a></li>
-                    <li><a onClick={() => { navigate('/LanguageBoxS') }} >Language Box</a></li>
-                    <li><a onClick={() => { navigate('/About&Content-Us') }} >About & Content - Us</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/Header&Footer') }} className={pathname.split('/')[2] === 'Header&Footer' ? "active" : null} >Header & Footer</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/SliderS') }} className={pathname.split('/')[2] === 'SliderS' ? "active" : null}  >Slider</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/DonateBTNS') }} className={pathname.split('/')[2] === 'DonateBTNS' ? "active" : null}  >Donate Button</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/LanguageBoxS') }} className={pathname.split('/')[2] === 'LanguageBoxS' ? "active" : null} >Language Box</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/About&Content-Us') }} className={pathname.split('/')[2] === 'About&Content-Us' ? "active" : null}  >About & Content - Us</a></li>
                     <li className="divider" />
-                    <li><a onClick={() => { navigate('/News') }} >News</a></li>
-                    <li><a onClick={() => { navigate('/Blogs') }} >Blogs</a></li>
-                    <li><a onClick={() => { navigate('/ProjectS') }} >Project</a></li>
-                    <li><a onClick={() => { navigate('/MyTeamS') }} >My Team</a></li>
-                    <li><a onClick={() => { navigate('/PlanS') }} >How Work Plans</a></li>
-                    <li><a onClick={() => { navigate('/Labels&Categorys') }} >Labels & Categorys</a></li>
-                    <li><a onClick={() => { navigate('/Change-Language-Web') }} >Change Language Web</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/News') }} className={pathname.split('/')[2] === 'News' ? "active" : null} >News</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/Blogs') }} className={pathname.split('/')[2] === 'Blogs' ? "active" : null} >Blogs</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/ProjectS') }} className={pathname.split('/')[2] === 'ProjectS' ? "active" : null} >Project</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/MyTeamS') }} className={pathname.split('/')[2] === 'MyTeamS' ? "active" : null} >My Team</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/PlanS') }} className={pathname.split('/')[2] === 'PlanS' ? "active" : null} >How Work Plans</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/Labels&Categorys') }} className={pathname.split('/')[2] === 'Labels&Categorys' ? "active" : null} >Labels & Categorys</a></li>
+                    <li><a onClick={() => { navigate('/dashboard/Change-Language-Web') }} className={pathname.split('/')[2] === 'Change-Language-Web' ? "active" : null} >Change Language Web</a></li>
                 </ul>
                 <div className="ps__rail-x" style={{ left: 0, bottom: 0 }}><div className="ps__thumb-x" tabIndex={0} style={{ left: 0, width: 0 }} /></div><div className="ps__rail-y" style={{ top: 0, right: 0 }}><div className="ps__thumb-y" tabIndex={0} style={{ top: 0, height: 0 }} /></div></div>
             <div className="content-wrapper">
@@ -56,7 +55,7 @@ const Dashboard = (Props) => {
                         </div>
                     </div>
                     <div className="row">
-                          {Props.children}      
+                        {Props.children}
                     </div>
                 </div>
             </div>
