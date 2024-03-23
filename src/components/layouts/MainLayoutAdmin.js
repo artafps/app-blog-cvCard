@@ -67,7 +67,20 @@ const MainLayoutAdmin = (Props) => {
 
         fetchProfileImage();
     }, []);
+    const [darkMode, setdarkMode] = useState('light');
+    const handleSunMode = () => {
+        localStorage.setItem('theme', 'light')
+        setdarkMode( 'light')
+    }
+    const handleDarkMode = () => {
+        localStorage.setItem('theme', 'dark')
+        setdarkMode( 'dark')
+    }
+    const theme = localStorage.getItem("theme")
     return (<Fragment>
+        {theme === 'dark' ? (
+        <link href="../../assets/css/darktheme.css" rel="stylesheet" />
+      ) : null}
         <div className={OPEN ? "app align-content-stretch d-flex flex-wrap" : 'app align-content-stretch d-flex flex-wrap sidebar-hidden'}>
             <div className="app-sidebar" >
                 <div className={OPEN ? "logo" : 'logo hidden-sidebar-logo'} >
@@ -83,7 +96,7 @@ const MainLayoutAdmin = (Props) => {
                             Apps
                         </li>
                         <li style={{ cursor: 'pointer' }} className={pathname.split('/')[1] === 'dashboard' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/dashboard')} className={pathname === '/dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                            <a onClick={() => navigate('/dashboard/Header&Footer')} className={pathname.split('/')[1] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
                         </li>
                         <li style={{ cursor: 'pointer' }} className={pathname === '/file-manager' ? "active-page" : ''}>
                             <a onClick={() => navigate('/file-manager')} className={pathname === '/file-manager' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
@@ -124,8 +137,15 @@ const MainLayoutAdmin = (Props) => {
                                     <li className="nav-item" onClick={() => { setOPEN(!OPEN) }}>
                                         <a className="nav-link hide-sidebar-toggle-button" href="#"><i className="material-icons">first_page</i></a>
                                     </li>
+                                    {localStorage.getItem('theme') === 'dark' ? <li className="nav-item" onClick={handleSunMode} >
+                                        <a className="nav-link hide-sidebar-toggle-button" href="#"><i className="material-icons-two-tone">light_mode</i></a>
+                                    </li>
+                                        : <li className="nav-item" onClick={handleDarkMode} >
+                                            <a className="nav-link hide-sidebar-toggle-button" href="#"><i className="material-icons-two-tone">dark_mode</i></a>
+                                        </li>}
 
                                     <li className="nav-item dropdown hidden-on-mobile">
+
                                         <a className="nav-link dropdown-toggle" href="#" id="exploreDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i className="material-icons-outlined">explore</i>
                                         </a>
@@ -158,6 +178,7 @@ const MainLayoutAdmin = (Props) => {
                                             </li>
                                         </ul>
                                     </li>
+
                                 </ul>
                             </div>
                             <div className="d-flex">

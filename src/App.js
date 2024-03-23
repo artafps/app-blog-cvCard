@@ -21,8 +21,11 @@ import ChangeLangS from './components/admin/Dashboard/ChangeLangS';
 
 
 function App() {
+  const theme = localStorage.getItem("theme")
   return (
+
     <Fragment>
+      
       {/* <head>
         {handleGETTheme() ? <link href="../../style/style.css" rel="stylesheet" /> :
           <link href="../../style/style-dark.css" rel="stylesheet" />
