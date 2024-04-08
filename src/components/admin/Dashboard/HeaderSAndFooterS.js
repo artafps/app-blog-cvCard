@@ -1,6 +1,6 @@
 
 import Dashboard from "../dashboard";
 const  HeaderSAndFooterS= () => {
-    return ( <Dashboard title='HeaderSAndFooterS' disc='HeaderSAndFooterS'>'HeaderSAndFooterS' </Dashboard>);
+    return ( <Dashboard title='Header And Footer' disc='Site header and footer editing section'>'HeaderSAndFooterS' </Dashboard>);
 }
 export default HeaderSAndFooterS;

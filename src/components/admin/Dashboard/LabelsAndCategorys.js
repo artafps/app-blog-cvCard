@@ -3,6 +3,6 @@
 
 import Dashboard from "../dashboard";
 const  LabelsAndCategorys= () => {
-    return ( <Dashboard title='LabelsAndCategorys' disc='LabelsAndCategorys'>'LabelsAndCategorys' </Dashboard>);
+    return ( <Dashboard title='Label And Category' disc='Edit labels and categories'>'LabelsAndCategorys' </Dashboard>);
 }
 export default LabelsAndCategorys;

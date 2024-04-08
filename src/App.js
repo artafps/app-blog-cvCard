@@ -21,7 +21,8 @@ import ChangeLangS from './components/admin/Dashboard/ChangeLangS';
 
 
 function App() {
-  const theme = localStorage.getItem("theme")
+ 
+
   return (
 
     <Fragment>

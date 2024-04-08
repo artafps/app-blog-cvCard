@@ -1,6 +1,6 @@
 
 import Dashboard from "../dashboard";
 const  LanguageBoxS= () => {
-    return ( <Dashboard title='LanguageBoxS' disc='LanguageBoxS'>'LanguageBoxS' </Dashboard>);
+    return ( <Dashboard title='Languages Box' disc='Enter the languages ​​you know'>'LanguageBoxS' </Dashboard>);
 }
 export default LanguageBoxS;
