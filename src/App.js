@@ -18,35 +18,34 @@ import MyTeamS from './components/admin/Dashboard/MyTeamS';
 import PlanS from './components/admin/Dashboard/PlanS';
 import LabelsAndCategorys from './components/admin/Dashboard/LabelsAndCategorys';
 import ChangeLangS from './components/admin/Dashboard/ChangeLangS';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
- 
+
 
   return (
 
     <Fragment>
-      
-      {/* <head>
-        {handleGETTheme() ? <link href="../../style/style.css" rel="stylesheet" /> :
+      <head>
+        {localStorage.getItem("theme") === 'light' ? <link href="../../style/style.css" rel="stylesheet" /> :
           <link href="../../style/style-dark.css" rel="stylesheet" />
         }
-      </head> */}
-      {/* <ToastContainer
+      </head>
+      <ToastContainer
         className='irs'
         position="bottom-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick={true}
-        theme={handleGETTheme() ? 'light' : 'dark'}
-        rtl={true}
-      /> */}
+        theme={localStorage.getItem("theme") === 'light' ? 'light' : 'dark'}
+        rtl={false}
+      />
       <Router>
         <Routes>
           <Route path="/login" exact element={<Login />} />
 
-          <Route path="/dashboard" exact element={<Dashboard />} />
 
           <Route path="/dashboard/Header&Footer" exact element={<HeaderSAndFooterS />} />
           <Route path="/dashboard/SliderS" exact element={<SliderS />} />
@@ -62,13 +61,13 @@ function App() {
           <Route path="/dashboard/Labels&Categorys" exact element={<LabelsAndCategorys />} />
           <Route path="/dashboard/Change-Language-Web" exact element={<ChangeLangS />} />
 
-
           <Route path="/document" exact element={<Document />} />
           <Route path="/file-manager" exact element={<FileManager />} />
           <Route path="/upload-file" exact element={<UploadFile />} />
           <Route path="/create-file" exact element={<FileUploader />} />
         </Routes >
-      </Router > </Fragment>
+      </Router >
+    </Fragment>
   );
 }
 

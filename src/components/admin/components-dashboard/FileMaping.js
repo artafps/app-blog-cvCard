@@ -1,6 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Octokit } from '@octokit/rest';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { getFileContent } from '../../../utils/getFileGit';
 
 function FileMaping({ editFile }) {
   const [files, setFiles] = useState([]);
@@ -13,15 +15,6 @@ function FileMaping({ editFile }) {
   const [Sha, setSha] = useState('');
 
 
-  const getFileContent = async (fileUrl) => {
-    try {
-      const response = await axios.get(fileUrl);
-      return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
-    } catch (error) {
-      console.error('Error fetching file content:', error);
-      throw error; // ارور ممکن است برای مدیریت خطاها بازگردانده شود
-    }
-  };
   const handleContentChange = (event) => {
     setFileContent(event.target.value);
   };
@@ -42,7 +35,6 @@ function FileMaping({ editFile }) {
     const octokit = new Octokit({
       auth: accessToken
     });
-
     const owner = OwnerName;
     const repo = RepoName;
 
@@ -86,8 +78,10 @@ function FileMaping({ editFile }) {
       if (files.length === 0) {
         setOpenFolder('')
       }
+      toast.success('File Deleted Successfully!')
     }).catch(err => {
       console.error("Error deleting file:", err);
+      toast.error('Error deleting file!')
     });
   };
   const formatFileSize = (size) => {

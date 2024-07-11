@@ -1,6 +1,7 @@
 import axios from "axios";
 import FileMaping from "./components-dashboard/FileMaping";
 import MainLayoutAdmin from "../layouts/MainLayoutAdmin";
+import { toast } from "react-toastify";
 
 
 const FileManager = () => {
@@ -15,10 +16,11 @@ const FileManager = () => {
                     Authorization: `token ${token}`
                 }
             });
-            alert('File edited successfully!');
+            toast.success('File edited successfully!')
             return response.data;
         } catch (error) {
             console.error('Error editing file:', error);
+            toast.error('Error editing file!')
             throw error;
         }
     };

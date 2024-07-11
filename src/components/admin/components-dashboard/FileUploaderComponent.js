@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function FileUploaderComponent() {
   const [fileName, setFileName] = useState('');
@@ -31,15 +32,15 @@ function FileUploaderComponent() {
         });
 
         console.log('File created:', response.data);
-        alert('File created successfully!');
+        toast.success('File created successfully!')
         setFileName('')
         setFileContent('')
       } else {
-        alert('Please enter file name, file path, and file content.');
+        toast.info('Please enter file name, file path, and file content!')
       }
     } catch (error) {
+      toast.error('An error occurred while creating the file! Check Console')
       console.error('Error creating file:', error);
-      alert('An error occurred while creating the file.');
     }
   };
 

@@ -14,7 +14,7 @@ const Login = () => {
         localStorage.setItem("Repo", Repo)
         localStorage.setItem("AC", AC)
         localStorage.setItem("CT", CT)
-        navigate('/dashboard')
+        navigate('/file-manager')
     }
     return (<Fragment>
 

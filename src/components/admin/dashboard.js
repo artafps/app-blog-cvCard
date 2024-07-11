@@ -6,6 +6,7 @@ const Dashboard = (Props) => {
     const navigate = useNavigate()
     const { pathname } = useLocation();
     return (<MainLayoutAdmin title={''}>
+        
         <div >
             <div class="dropdown ">
                 <a class="content-menu-toggle btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

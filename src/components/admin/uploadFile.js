@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import MainLayoutAdmin from "../layouts/MainLayoutAdmin";
 import axios from "axios";
+import { fileToBase64 } from "../../utils/fileToBase64";
+import { toast } from "react-toastify";
 
 
 const UploadFile = () => {
@@ -17,14 +19,7 @@ const UploadFile = () => {
         console.log(event.target.files[0])
         setFile(event.target.files[0]);
     };
-    function fileToBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result.split(',')[1]);
-            reader.onerror = error => reject(error);
-        });
-    }
+    
     
     const handleUpload = async () => {
         try {
@@ -44,12 +39,12 @@ const UploadFile = () => {
             }, {
                 headers: {
                     Authorization: `token ${accessToken}`,
-                   
                 },
             });
             setFile(null)
-            console.log('File uploaded successfully:', response.data);
+            toast.success('File uploaded successfully!')
         } catch (error) {
+            toast.error('Error uploading file! Check The Console')
             console.error('Error uploading file:', error);
         }
     };

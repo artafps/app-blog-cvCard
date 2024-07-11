@@ -1,17 +1,24 @@
+import { Octokit } from "@octokit/rest";
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-
+import File from '../admin/Index.json'
+import { fileToBase64 } from "../../utils/fileToBase64";
+import { toast } from "react-toastify";
 
 const MainLayoutAdmin = (Props) => {
     const [profileImage, setProfileImage] = useState('');
     const [fullName, setFullName] = useState('');
     const [OPEN, setOPEN] = useState(true);
+    const [file, setFile] = useState(null);
     const navigate = useNavigate()
     const { pathname } = useLocation();
     const OwnerName = localStorage.getItem('Owner');
     const accessToken = localStorage.getItem('AC');
     const ClassicToken = localStorage.getItem('CT');
+    const [files, setFiles] = useState([]);
+    const [StatusCreateWeb, SetStatusCreateWeb] = useState(false);
+    const RepoName = localStorage.getItem('Repo');
     useEffect(() => {
         const fetchFullName = async () => {
             try {
@@ -70,17 +77,94 @@ const MainLayoutAdmin = (Props) => {
     const [darkMode, setdarkMode] = useState('light');
     const handleSunMode = () => {
         localStorage.setItem('theme', 'light')
-        setdarkMode( 'light')
+        setdarkMode('light')
     }
     const handleDarkMode = () => {
         localStorage.setItem('theme', 'dark')
-        setdarkMode( 'dark')
+        setdarkMode('dark')
     }
     const theme = localStorage.getItem("theme")
+    const getData = () => {
+        const octokit = new Octokit({
+            auth: accessToken
+        });
+        const owner = OwnerName;
+        const repo = RepoName;
+
+        octokit.paginate(`GET /repos/${OwnerName}/${RepoName}/contents/configs`, {
+            owner: owner,
+            repo: repo,
+            path: ""
+        }).then(files => {
+            const data = files.filter(item => {
+                console.log(item)
+                if (item.name === 'Config-Web-EN.json') {
+                    return item
+                }
+            })
+            if (data.length > 0) {
+                SetStatusCreateWeb(true)
+            }
+            setFiles(files);
+        }).catch(err => {
+            console.error("Error getting file list:", err);
+        });
+    }
+    const handleCreateWebSite = async() => {
+        // قرار است نام فایل بعدا داینامیک باشد
+        const file=JSON.stringify(File)
+        try {
+            const data = {
+                message: "Create new file",
+                content: btoa(unescape(encodeURIComponent(file)))
+              };
+              const functionThatReturnPromise = () => new Promise(resolve => setTimeout(resolve, 3000));
+              console.log(functionThatReturnPromise)
+              const response = await axios.put(`https://api.github.com/repos/artafps/artafps/contents/configs/Config-Web-EN.json`, data, {
+                headers: {
+                  Authorization: `token ${accessToken}`
+                }
+              });
+              toast.success('File created successfully!')
+              console.log('File created:', response.data);
+        } catch (error) {
+            toast.error('Error uploading file Check console')
+            
+            console.error('Error uploading file:', error);
+           
+        }
+        
+    }
+    useEffect(() => {
+        
+        getData()
+    }, []);
     return (<Fragment>
+
         {theme === 'dark' ? (
-        <link href="../../assets/css/darktheme.css" rel="stylesheet" />
-      ) : null}
+            <link href="../../assets/css/darktheme.css" rel="stylesheet" />
+        ) : null}
+        <div>
+            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Create personal site</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                        </div>
+                        <div className="modal-body">
+                            Hello my friend
+                            If you want to start a personal site, just click the "Create".
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary"   data-bs-toggle="modal" data-bs-target="#exampleModal">Close</button>
+                            <button type="button" className="btn btn-success" onClick={handleCreateWebSite}  data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div className={OPEN ? "app align-content-stretch d-flex flex-wrap" : 'app align-content-stretch d-flex flex-wrap sidebar-hidden'}>
             <div className="app-sidebar" >
                 <div className={OPEN ? "logo" : 'logo hidden-sidebar-logo'} >
@@ -95,9 +179,16 @@ const MainLayoutAdmin = (Props) => {
                         <li className="sidebar-title">
                             Apps
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname.split('/')[1] === 'dashboard' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/dashboard/Header&Footer')} className={pathname.split('/')[1] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
-                        </li>
+                        {
+                            StatusCreateWeb ? (<li type="button" style={{ cursor: 'pointer' }} className={pathname.split('/')[1] === 'dashboard' ? "active-page" : ''}>
+                                <a onClick={() => navigate('/dashboard/Header&Footer')} className={pathname.split('/')[1] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                            </li>) : (
+                                <li type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ cursor: 'pointer' }} className={pathname.split('/')[1] === 'dashboard' ? "active-page" : ''}>
+                                    <a  className={pathname.split('/')[1] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                                </li>
+                            )
+                        }
+
                         <li style={{ cursor: 'pointer' }} className={pathname === '/file-manager' ? "active-page" : ''}>
                             <a onClick={() => navigate('/file-manager')} className={pathname === '/file-manager' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
                         </li>
