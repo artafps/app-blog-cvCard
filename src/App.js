@@ -10,7 +10,6 @@ import HeaderSAndFooterS from './components/admin/Dashboard/HeaderSAndFooterS';
 import SliderS from './components/admin/Dashboard/SliderS';
 import DonateBTNS from './components/admin/Dashboard/DonateBTNS';
 import LanguageBoxS from './components/admin/Dashboard/LanguageBoxS';
-import AboutUsAndContactUs from './components/admin/Dashboard/AboutUsAndContactUs';
 import News from './components/admin/Dashboard/News';
 import Blogs from './components/admin/Dashboard/Blogs';
 import ProjectS from './components/admin/Dashboard/ProjectS';
@@ -50,8 +49,7 @@ function App() {
           <Route path="/dashboard/Header&Footer" exact element={<HeaderSAndFooterS />} />
           <Route path="/dashboard/SliderS" exact element={<SliderS />} />
           <Route path="/dashboard/DonateBTNS" exact element={<DonateBTNS />} />
-          <Route path="/dashboard/LanguageBoxS" exact element={<LanguageBoxS />} />
-          <Route path="/dashboard/About&Content-Us" exact element={<AboutUsAndContactUs />} />
+          <Route path="/dashboard/Skils" exact element={<LanguageBoxS />} />
 
           <Route path="/dashboard/News" exact element={<News />} />
           <Route path="/dashboard/Blogs" exact element={<Blogs />} />

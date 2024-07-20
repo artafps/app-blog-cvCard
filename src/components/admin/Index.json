@@ -5,16 +5,14 @@
     "Header": {
         "Status": "true",
         "Logo": {
-            "Title": "awdawdwadwadشصیشصیd",
+            "Title": "",
             "Text": "",
-            "ImageURI": "https://api.github.com/repos/artafps/artafps/contents/logo/logoHEADER-f-IMG_20220521_134813.jpg"
+            "ImageURI": ""
         },
-        "Social": [
-            
-        ]
+        "Social": []
     },
     "Slider": {
-        "Status": "true",
+        "Status": "false",
         "H1Text": "",
         "Description": "",
         "BtnText": "",
@@ -25,7 +23,7 @@
         "LinkCircle": ""
     },
     "Skils": {
-        "Status": "",
+        "Status": "false",
         "Arr": [
             {
                 "Title": "",
@@ -115,5 +113,11 @@
                 ]
             }
         ]
+    },
+    "Donate":{
+        "Status": "",
+        "Title":"",
+        "SubTitle":"",
+        "Items":[]
     }
 }

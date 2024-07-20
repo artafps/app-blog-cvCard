@@ -289,7 +289,7 @@ const HeaderSAndFooterS = () => {
         }, 5000);
     }
     const handleChangeSOCIALHEADER = async () => {
-        if (!file2 && SOCIALMEDIALINKHEADER === '') {
+        if (!file2 && SOCIALMEDIALINKHEADER.trim() === '') {
             // check items get user
             toast.error('Hello, please fill in the link section and upload the icon file to complete the operation')
         }
@@ -647,7 +647,6 @@ const HeaderSAndFooterS = () => {
                 if (route !== '') {
                     const data2 = await getFileContent(route)
                     if (data2) {
-                        console.log('3')
 
                         setTimeout(() => {
                             setProgress(100)
@@ -655,7 +654,19 @@ const HeaderSAndFooterS = () => {
                             handleDelete(data2.path, data2.sha)
                             setProgress(0)
                         }, 7000);
+                    }else{
+                        setProgress2(100)
+                    setFile3(null)
+                    setTimeout(() => {
+                        setProgress2(0)
+                    }, 1000);
                     }
+                }else {
+                    setProgress2(100)
+                    setFile3(null)
+                    setTimeout(() => {
+                        setProgress2(0)
+                    }, 2000);
                 }
             } else {
                 toast.warn('You have already selected this file for the logo')
@@ -715,7 +726,6 @@ const HeaderSAndFooterS = () => {
                 if (route !== '') {
                     const data2 = await getFileContent(route)
                     if (data2) {
-                        console.log('3')
 
                         setTimeout(() => {
                             setProgress2(100)
@@ -723,13 +733,19 @@ const HeaderSAndFooterS = () => {
                             handleDelete(data2.path, data2.sha)
                             setProgress2(0)
                         }, 7000);
+                    }else{
+                        setProgress2(100)
+                        setFile3(null)
+                        setTimeout(() => {
+                            setProgress2(0)
+                        }, 1000);
                     }
                 } else {
                     setProgress2(100)
                     setFile3(null)
                     setTimeout(() => {
                         setProgress2(0)
-                    }, 7000);
+                    }, 2000);
                 }
             } else {
                 toast.warn('You have already selected this file for the logo')
@@ -819,8 +835,6 @@ const HeaderSAndFooterS = () => {
                         <input style={{ display: 'none' }} type="file" ref={input} onChange={handleChange} />
                     </form>
                 </div>
-
-
             </div>
         </div>
 
@@ -854,16 +868,17 @@ const HeaderSAndFooterS = () => {
                             : null}
                         <br />
                         <br />
-                        <label class="form-check-label" > Link Social Media </label>
                         <div class="form-check form-switch">
                             <input checked={SOCIALDARKMODEHEADER} onChange={() => setSOCIALDARKMODEHEADER(!SOCIALDARKMODEHEADER)} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault2345" />
                             <label class="form-check-label" for="flexSwitchCheckDefault2345">  On Dark Mode?</label>
                         </div>
+                        
+
                         <div class="input-group mb-3">
-                            <span class="input-group-text input-group-text-material" id="custom-addon3">https://</span>
-                            <input value={SOCIALMEDIALINKHEADER} onChange={(e) => { setSOCIALMEDIALINKHEADER(e.target.value) }} type="text" className="form-control form-control-material" id="custom-url" aria-describedby="custom-addon3" />
-                            <br />
-                        </div>
+                        <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
+                        <input  value={SOCIALMEDIALINKHEADER} onChange={(e) => { setSOCIALMEDIALINKHEADER(e.target.value) }}   type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
+                        <br />
+                    </div>
                         {file2 !== null ? <div class="alert alert-custom" role="alert">
                             <div class="alert-content">
                                 <div>
@@ -1017,17 +1032,18 @@ const HeaderSAndFooterS = () => {
                             : null}
                         <br />
                         <br />
-                        <label class="form-check-label" > Link Social Media </label>
                         <div class="form-check form-switch">
                             <input checked={SOCIALDARKMODEFOOTER} onChange={() => setSOCIALDARKMODEFOOTER(!SOCIALDARKMODEFOOTER)} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault234" />
                             <label class="form-check-label" for="flexSwitchCheckDefault234">  On Dark Mode?</label>
                         </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text input-group-text-material" id="custom-addon3">https://</span>
-                            <input value={SOCIALMEDIALINKFOOTER} onChange={(e) => { setSOCIALMEDIALINKFOOTER(e.target.value) }} type="text" className="form-control form-control-material" id="custom-url" aria-describedby="custom-addon3" />
-                            <br />
 
+                        <label class="form-check-label" > Link Social Media </label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
+                            <input value={SOCIALMEDIALINKFOOTER} onChange={(e) => { setSOCIALMEDIALINKFOOTER(e.target.value) }} type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
+                            <br />
                         </div>
+
                         {file4 !== null ? <div class="alert alert-custom" role="alert">
                             <div class="alert-content">
                                 <div>
@@ -1090,10 +1106,11 @@ const HeaderSAndFooterS = () => {
                     <br />
                     <label class="form-check-label" for="flexSwitchCheckDefault234"> Link PowerBy :</label>
                     <div class="input-group mb-3">
-                        <span class="input-group-text input-group-text-material" id="custom-addon3">https://</span>
-                        <input value={POWERBYLINK} onChange={(e) => { handleChangePOWERBYLINK(e.target.value) }} type="text" className="form-control form-control-material" id="custom-url" aria-describedby="custom-addon3" />
-                        <br />
-                    </div></div>
+                        <span class="input-group-text" id="basic-addon3">https://</span>
+                        <input value={POWERBYLINK} onChange={(e) => { handleChangePOWERBYLINK(e.target.value) }} type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
+                    </div>
+
+                </div>
             </div>
         </div>
 
