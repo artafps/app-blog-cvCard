@@ -152,7 +152,7 @@ const LanguageBoxS = () => {
             }
         }, 5000);
     }
-
+// ------------------------
     const [STATUSSKILS, setSTATUSSKILS] = useState(false);
     const [SKILSARR, setSKILSARR] = useState([]);
     const [TextI, setTextI] = useState('');
