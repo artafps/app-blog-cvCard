@@ -43,7 +43,7 @@ function App() {
       />
       <Router>
         <Routes>
-          <Route path="/login" exact element={<Login />} />
+          <Route path="/" exact element={<Login />} />
 
 
           <Route path="/dashboard/Header&Footer" exact element={<HeaderSAndFooterS />} />
