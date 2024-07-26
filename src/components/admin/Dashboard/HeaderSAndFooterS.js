@@ -797,7 +797,7 @@ const HeaderSAndFooterS = () => {
                 {file !== null ? <div class="alert alert-custom" role="alert">
                     <div class="alert-content">
                         <div>
-                            <label htmlFor="fileName">{`https://github.com/${OwnerName}/${RepoName}/image/logo/${file.name}`}</label>
+                            <label htmlFor="fileName">{`https://github.com/${OwnerName}/${RepoName}/image/logo/logoHEADER-f-${file.name}`}</label>
                         </div>
                         <br />
                         <span class="alert-title">{file.name}</span>
@@ -882,7 +882,7 @@ const HeaderSAndFooterS = () => {
                         {file2 !== null ? <div class="alert alert-custom" role="alert">
                             <div class="alert-content">
                                 <div>
-                                    <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/social/${file2.name}`}</label>
+                                    <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/social/logoFooter-f-${file2.name}`}</label>
                                 </div>
                                 <br />
                                 <span class="alert-title">{file2.name}</span>

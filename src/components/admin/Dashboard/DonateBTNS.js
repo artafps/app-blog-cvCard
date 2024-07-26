@@ -223,7 +223,7 @@ const DonateBTNS = () => {
             setONCHANGESAVE(false)
         }
     }
-    
+
 
     const handleDeleteITEM_DONATE = async (id) => {
         var events = `https://api.github.com/repos/${OwnerName}/${RepoName}/contents/${id.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`)[1]}`
@@ -246,8 +246,8 @@ const DonateBTNS = () => {
             handleDelete(data2.path, data2.sha)
         }, 5000);
     }
-    const handleChangeDONATEITEMS= async () => {
-        if (!input && LinkI.trim() === ''  && TextI.trim() === '') {
+    const handleChangeDONATEITEMS = async () => {
+        if (!input && LinkI.trim() === '' && TextI.trim() === '') {
             // check Items get user
             toast.error('Hello, please fill in the link section and upload the icon file to complete the operation')
         }
@@ -346,7 +346,7 @@ const DonateBTNS = () => {
                         <h5>Edit Title Donate</h5>
                     </div>
                 </div>
-                <br/>
+                <br />
 
                 <label class="form-check-label" >Title Donate </label>
                 <textarea value={TITLEDONATE} onChange={e => handleChangeTITLEDONATE(e.target.value)} type="text" class="form-control" placeholder="Title Donate" aria-label="Username" aria-describedby="basic-addon1" />
@@ -360,7 +360,7 @@ const DonateBTNS = () => {
                         <h5>Edit SubTitle Donate</h5>
                     </div>
                 </div>
-                <br/>
+                <br />
 
                 <label class="form-check-label" >SubTitle Donate </label>
                 <textarea value={SUBTITLEDONATE} onChange={e => handleChangeSubTitleDonate(e.target.value)} type="text" class="form-control" placeholder="SubTitle Donate " aria-label="Username" aria-describedby="basic-addon1" />
@@ -386,8 +386,8 @@ const DonateBTNS = () => {
                                             <img src={item.Icone} alt />
                                         </div>
                                         <div className="widget-payment-request-author-info">
-                                            <span className="widget-payment-request-author-name">{`https://${item.Link}`}</span>
-                                            <span className="widget-payment-request-author-about">{item.Icone.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`)[1]}</span>
+                                            <span className="widget-payment-request-author-name">{item.Text}</span>
+                                            <span className="widget-payment-request-author-about">{item.Icone.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`).length}</span>
                                         </div>
                                         <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteITEM_DONATE(item.Icone) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
 
@@ -397,65 +397,66 @@ const DonateBTNS = () => {
                             : null}
                         <br />
                         <br />
-                        
+                        <label class="form-check-label" >Donate Title</label>
                         <div class="input-group mb-3">
-                        <input  value={TextI} onChange={(e) => { setTextI(e.target.value) }}   type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
-                        <br />
-                        <br />
+                            <input value={TextI} onChange={(e) => { setTextI(e.target.value) }} type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
+                            <br />
+                            <br />
                         </div>
+                        <label class="form-check-label" >Donate Link</label>
                         <div class="input-group mb-3">
-                        <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
-                        <input  value={LinkI} onChange={(e) => { setLinkI(e.target.value) }}   type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
+                            <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
+                            <input value={LinkI} onChange={(e) => { setLinkI(e.target.value) }} type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
 
                         </div>
                         <br />
                     </div>
-                        {File !== null ? <div class="alert alert-custom" role="alert">
-                            <div class="alert-content">
-                                <div>
-                                    <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/social/${File.name}`}</label>
-                                </div>
-                                <br />
-                                <span class="alert-title">{File.name}</span>
-                                <span class="alert-text">URL:<a target="_blank" href={URL.createObjectURL(File)}> {URL.createObjectURL(File)} </a></span>
-                                <br />
-                                {/* onClick={handleUpload} */}
-                                <button onClick={() => setFile(null)} type="button" className="btn btn-danger m-2">Remove File</button>
-                                {
-                                    Progress !== 0 ?
-                                        <div>
-                                            <span class="btn btn-light alert-title"><div class="spinner-border text-primary" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div> Uploading . . . .</span>
-
-                                            <div className="progress">
-                                                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemax={100} style={{ width: `${Progress}%` }} />
-                                            </div>
-                                        </div>
-                                        : null
-                                }
-
+                    {File !== null ? <div class="alert alert-custom" role="alert">
+                        <div class="alert-content">
+                            <div>
+                                <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/social/${File.name}`}</label>
                             </div>
-                        </div> : null}
+                            <br />
+                            <span class="alert-title">{File.name}</span>
+                            <span class="alert-text">URL:<a target="_blank" href={URL.createObjectURL(File)}> {URL.createObjectURL(File)} </a></span>
+                            <br />
+                            {/* onClick={handleUpload} */}
+                            <button onClick={() => setFile(null)} type="button" className="btn btn-danger m-2">Remove File</button>
+                            {
+                                Progress !== 0 ?
+                                    <div>
+                                        <span class="btn btn-light alert-title"><div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div> Uploading . . . .</span>
 
-                        <div id="dropzone">
-                            <form className="dropzone needsclick dz-clickable" onClick={() => input.current.click()}>
-                                <div className="dz-message needsclick" >
-                                    <button type="button" className="dz-button">Drop files here or click to upload.</button><br />
-                                    <button type="button" className="dz-button">50*50 px</button><br />
-                                    <span className="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
-                                </div>
-                                <input style={{ display: 'none' }} type="file" ref={input} onChange={handleChange} />
-                            </form>
+                                        <div className="progress">
+                                            <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemax={100} style={{ width: `${Progress}%` }} />
+                                        </div>
+                                    </div>
+                                    : null
+                            }
+
                         </div>
+                    </div> : null}
+
+                    <div id="dropzone">
+                        <form className="dropzone needsclick dz-clickable" onClick={() => input.current.click()}>
+                            <div className="dz-message needsclick" >
+                                <button type="button" className="dz-button">Drop files here or click to upload.</button><br />
+                                <button type="button" className="dz-button">50*50 px</button><br />
+                                <span className="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                            </div>
+                            <input style={{ display: 'none' }} type="file" ref={input} onChange={handleChange} />
+                        </form>
+                    </div>
 
 
-                        <div className="widget-payment-request-actions m-t-md d-flex">
-                            <a onClick={handleChangeDONATEITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Social Media Link</a>
-                        </div>
+                    <div className="widget-payment-request-actions m-t-md d-flex">
+                        <a onClick={handleChangeDONATEITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Social Media Link</a>
                     </div>
                 </div>
             </div>
+        </div>
 
 
     </Dashboard>);

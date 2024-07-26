@@ -61,7 +61,7 @@ const  Blogs= () => {
             setDATAGITARRY(DATAGIT)
             console.log(DATAGIT)
             setSha(res.sha)
-           
+            setTEXT(DATAGIT.Blog.Title)
             console.log('File content:', res);
         })
             .catch((error) => {
