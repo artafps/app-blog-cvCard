@@ -243,7 +243,7 @@ const News = () => {
                         socialHeader.push(item)
                         setITEMSNEWS(socialHeader)
                         const newData = Data
-                        newData.Donate.Items = socialHeader
+                        newData.News.Arr = socialHeader
                         localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
                     }
                     setTimeout(() => {

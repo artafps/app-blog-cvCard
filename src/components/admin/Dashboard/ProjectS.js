@@ -66,14 +66,14 @@ const ProjectS = () => {
             console.log(DATAGIT)
             setSha(res.sha)
             if (DATAGIT.Project.Status === "") {
-                setSTATUSNEWS(false)
+                setSTATUSPROJECT(false)
             } else if (DATAGIT.Project.Status === "false") {
-                setSTATUSNEWS(false)
+                setSTATUSPROJECT(false)
             } else {
-                setSTATUSNEWS(true)
+                setSTATUSPROJECT(true)
             }
             setTITLE(DATAGIT.Project.Title)
-            setITEMSNEWS(DATAGIT.Project.Arr)
+            setITEMSPROJECT(DATAGIT.Project.Arr)
             console.log('File content:', res);
         })
             .catch((error) => {
@@ -143,7 +143,7 @@ const ProjectS = () => {
     }
 
 
-    const [STATUSNEWS, setSTATUSNEWS] = useState(false);
+    const [STATUSPROJECT, setSTATUSPROJECT] = useState(false);
     const [TITLE, setTITLE] = useState();
 
     const [Title, setTitle] = useState("");
@@ -155,21 +155,21 @@ const ProjectS = () => {
 
     const input = useRef(null)
     const [File, setFile] = useState(null);
-    const [ITEMSNEWS, setITEMSNEWS] = useState([]);
+    const [ITEMSPROJECT, setITEMSPROJECT] = useState([]);
 
 
-    const handleChangeSTATUSNEWS = async (events) => {
+    const handleChangeSTATUSPROJECT = async (events) => {
 
         let Data = localStorage.getItem('DATAGITBACK')
         if (Data === null) {
             DATAGITARRY.Project.Status = String(events)
             localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
-            setSTATUSNEWS(events)
+            setSTATUSPROJECT(events)
         } else {
             const newData = JSON.parse(Data)
             newData.Project.Status = String(events)
             localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
-            setSTATUSNEWS(events)
+            setSTATUSPROJECT(events)
         }
         Data = localStorage.getItem('DATAGITBACK')
         if (JSON.stringify(DATAGITARRY) !== Data) {
@@ -178,7 +178,7 @@ const ProjectS = () => {
             setONCHANGESAVE(false)
         }
     }
-    const handleChangeTITLENEWS = async (events) => {
+    const handleChangeTITLEPROJECT = async (events) => {
         let Data = localStorage.getItem('DATAGITBACK')
         if (Data === null) {
             DATAGITARRY.Project.Title = String(events)
@@ -198,7 +198,7 @@ const ProjectS = () => {
         }
     }
 
-    const handleChangeNEWSITEMS = async () => {
+    const handleChangePROJECTITEMS = async () => {
         if (!input && Title.trim() === '' &&
             Description.trim() === '' && Percent.trim() === '' &&
             Link.trim() === '') {
@@ -241,9 +241,9 @@ const ProjectS = () => {
                         let Data = JSON.parse(d)
                         const socialHeader = Data.Project.Arr
                         socialHeader.push(item)
-                        setITEMSNEWS(socialHeader)
+                        setITEMSPROJECT(socialHeader)
                         const newData = Data
-                        newData.Donate.Items = socialHeader
+                        newData.Project.Arr = socialHeader
                         localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
                     }
                     setTimeout(() => {
@@ -283,7 +283,7 @@ const ProjectS = () => {
             input.current.value = ''
         }
     };
-    const handleDeleteITEM_NEWS = async (id) => {
+    const handleDeleteITEM_PROJECT = async (id) => {
         var events = `https://api.github.com/repos/${OwnerName}/${RepoName}/contents/${id.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`)[1]}`
         const data2 = await getFileContent(events)
         var d = localStorage.getItem('DATAGITBACK')
@@ -296,7 +296,7 @@ const ProjectS = () => {
             let Data = JSON.parse(d)
             const newDataSocial = Data.Project.Arr.filter(item => item.ImageURI !== id)
             Data.Project.Arr = newDataSocial
-            setITEMSNEWS(Data.Project.Arr)
+            setITEMSPROJECT(Data.Project.Arr)
             localStorage.setItem('DATAGITBACK', JSON.stringify(Data))
             HANDLESAVE()
         }
@@ -327,7 +327,7 @@ const ProjectS = () => {
 
                 <div class="form-check form-switch">
                     {/* {} } */}
-                    <input checked={STATUSNEWS} onChange={() => handleChangeSTATUSNEWS(!STATUSNEWS)} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                    <input checked={STATUSPROJECT} onChange={() => handleChangeSTATUSPROJECT(!STATUSPROJECT)} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
                     <label class="form-check-label" for="flexSwitchCheckDefault">Do you want this section to be displayed on the site?</label>
                 </div>
             </div>
@@ -342,7 +342,7 @@ const ProjectS = () => {
                 </div>
                 <br />
                 <label class="form-check-label" >Title Project</label>
-                <input value={TITLE} onChange={e => handleChangeTITLENEWS(e.target.value)} type="text" class="form-control" placeholder="Title Project" aria-label="Username" aria-describedby="basic-addon1" />
+                <input value={TITLE} onChange={e => handleChangeTITLEPROJECT(e.target.value)} type="text" class="form-control" placeholder="Title Project" aria-label="Username" aria-describedby="basic-addon1" />
             </div>
         </div>
 
@@ -357,8 +357,8 @@ const ProjectS = () => {
                 <div className="card-body">
                     <div className="widget-payment-request-container">
 
-                        {ITEMSNEWS.length !== 0 ?
-                            ITEMSNEWS.map(item => {
+                        {ITEMSPROJECT.length !== 0 ?
+                            ITEMSPROJECT.map(item => {
                                 return (
                                     <div style={{ borderRadius: 20, marginBottom: 10 }} className={item.Dark ? "widget-payment-request-author bg-dark" : "widget-payment-request-author"}>
                                         <div className="avatar m-r-sm">
@@ -371,7 +371,7 @@ const ProjectS = () => {
                                         <div className="widget-payment-request-author-info">
                                             <span className="widget-payment-request-author-about">{item.ImageURI.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`)[1]}</span>
                                         </div>
-                                        <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteITEM_NEWS(item.ImageURI) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
+                                        <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteITEM_PROJECT(item.ImageURI) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
 
                                     </div>
                                 )
@@ -448,7 +448,7 @@ const ProjectS = () => {
 
 
                     <div className="widget-payment-request-actions m-t-md d-flex">
-                        <a onClick={handleChangeNEWSITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Social Media Link</a>
+                        <a onClick={handleChangePROJECTITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Social Media Link</a>
                     </div>
                 </div>
             </div>
