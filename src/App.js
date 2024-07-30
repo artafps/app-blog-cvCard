@@ -27,8 +27,8 @@ function App() {
 
     <Fragment>
       <head>
-        {localStorage.getItem("theme") === 'light' ? <link href="../../style/style.css" rel="stylesheet" /> :
-          <link href="../../style/style-dark.css" rel="stylesheet" />
+        {localStorage.getItem("theme") === 'light' ? <link href="./style/style.css" rel="stylesheet" /> :
+          <link href="./style/style-dark.css" rel="stylesheet" />
         }
       </head>
       <ToastContainer
