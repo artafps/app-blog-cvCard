@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
-
+import cfg from '../../Config.json'
 
 const Login = () => {
     const [Owner, setOwner] = useState('');
@@ -18,7 +18,7 @@ const Login = () => {
         localStorage.setItem("Repo", Repo)
         localStorage.setItem("AC", AC)
         localStorage.setItem("CT", CT)
-        navigate('/admin/file-manager')
+        navigate(`${cfg.imgURI}/admin/file-manager`)
         return toast.success('Hello Welecome To Dashboard ')
     }
     return (<Fragment>
