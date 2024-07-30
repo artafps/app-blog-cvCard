@@ -154,7 +154,7 @@ const MainLayoutAdmin = (Props) => {
     return (<Fragment>
 
         {theme === 'dark' ? (
-            <link href="../../assets/css/darktheme.css" rel="stylesheet" />
+            <link href="./assets/css/darktheme.css" rel="stylesheet" />
         ) : null}
         <div>
             <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">

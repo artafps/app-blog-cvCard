@@ -21,16 +21,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ListBlog from './components/admin/ListBlog';
 import CreateBlog from './components/admin/CreateBlog';
 function App() {
-
-
   return (
-
     <Fragment>
-      <head>
-        {localStorage.getItem("theme") === 'light' ? <link href="./style/style.css" rel="stylesheet" /> :
-          <link href="./style/style-dark.css" rel="stylesheet" />
-        }
-      </head>
       <ToastContainer
         className='irs'
         position="bottom-center"
@@ -44,13 +36,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" exact element={<Login />} />
-
-
           <Route path="/admin/dashboard/Header&Footer" exact element={<HeaderSAndFooterS />} />
           <Route path="/admin/dashboard/SliderS" exact element={<SliderS />} />
           <Route path="/admin/dashboard/DonateBTNS" exact element={<DonateBTNS />} />
           <Route path="/admin/dashboard/Skils" exact element={<LanguageBoxS />} />
-
           <Route path="/admin/dashboard/News" exact element={<News />} />
           <Route path="/admin/dashboard/Blogs" exact element={<Blogs />} />
           <Route path="/admin/dashboard/ProjectS" exact element={<ProjectS />} />
@@ -58,7 +47,6 @@ function App() {
           <Route path="/admin/dashboard/PlanS" exact element={<PlanS />} />
           <Route path="/admin/dashboard/Labels&Categorys" exact element={<LabelsAndCategorys />} />
           <Route path="/admin/dashboard/Change-Language-Web" exact element={<ChangeLangS />} />
-
           <Route path="/admin/document" exact element={<Document />} />
           <Route path="/admin/file-manager" exact element={<FileManager />} />
           <Route path="/admin/upload-file" exact element={<UploadFile />} />
