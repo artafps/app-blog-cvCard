@@ -19,7 +19,7 @@ const Login = () => {
         localStorage.setItem("AC", AC)
         localStorage.setItem("CT", CT)
         navigate('/admin/file-manager')
-        return toast.success('Hello Welecome To Dashboard ')
+        return toast.success('Hello Welecome To Dashboard')
     }
     return (<Fragment>
 
