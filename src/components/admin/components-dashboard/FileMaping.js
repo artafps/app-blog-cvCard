@@ -15,22 +15,8 @@ function FileMaping({ editFile }) {
   const [Sha, setSha] = useState('');
 
 
-  const handleContentChange = (event) => {
-    setFileContent(event.target.value);
-  };
-  const handleGetFileData = (file) => {
-    const filePath = `https://api.github.com/repos/${OwnerName}/${RepoName}/contents/${file.path}`;
-    setfilePath(filePath)
-    getFileContent(filePath).then((res) => {
-      const binaryData = decodeURIComponent(escape(atob(res.content)));
-      setFileContent(binaryData)
-      setSha(res.sha)
-      console.log('File content:', res);
-    })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }
+
+  
   const getData = () => {
     const octokit = new Octokit({
       auth: accessToken
@@ -94,6 +80,22 @@ function FileMaping({ editFile }) {
     } else {
       return `${size} bytes`;
     }
+  };
+  const handleGetFileData = (file) => {
+    const filePath = `https://api.github.com/repos/${OwnerName}/${RepoName}/contents/${file.path}`;
+    setfilePath(filePath)
+    getFileContent(filePath).then((res) => {
+      const binaryData = decodeURIComponent(escape(atob(res.content)));
+      setFileContent(binaryData)
+      setSha(res.sha)
+      console.log('File content:', res);
+    })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+  const handleContentChange = (event) => {
+    setFileContent(event.target.value);
   };
   const handleEditeFile = () => {
     setfilePath('')

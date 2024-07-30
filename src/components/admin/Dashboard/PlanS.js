@@ -4,9 +4,7 @@ import axios from "axios";
 import Dashboard from "../dashboard";
 import { Octokit } from "@octokit/rest";
 import { toast } from "react-toastify";
-import { useEffect, useRef, useState } from "react";
-import { getFileContent } from "../../../utils/getFileGit";
-import { fileToBase64 } from "../../../utils/fileToBase64";
+import { useEffect, useState } from "react";
 
 const PlanS = () => {
 
@@ -43,9 +41,9 @@ const PlanS = () => {
 
 
 
+    const Lang = localStorage.getItem('selectLanguage');
 
-
-    const configNameFile = 'Config-Web-EN.json'
+    const configNameFile =`Config-Web-${Lang}.json`
 
     const accessToken = localStorage.getItem('AC');
     const OwnerName = localStorage.getItem('Owner');
@@ -128,7 +126,7 @@ const PlanS = () => {
     const HANDLESAVE = async () => {
         await editFile(configNameFile, localStorage.getItem('DATAGITBACK'), Sha, accessToken)
         setONCHANGESAVE(false)
-        await setTimeout(async () => {
+        setTimeout(async () => {
             getData()
         }, 4000);
         setTimeout(async () => {

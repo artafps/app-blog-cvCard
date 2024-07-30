@@ -3,6 +3,7 @@ import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import File from '../admin/Index.json'
+import File2 from '../admin/Language.json'
 import { fileToBase64 } from "../../utils/fileToBase64";
 import { toast } from "react-toastify";
 
@@ -110,33 +111,44 @@ const MainLayoutAdmin = (Props) => {
             console.error("Error getting file list:", err);
         });
     }
-    const handleCreateWebSite = async() => {
+    const handleCreateWebSite = async () => {
         // قرار است نام فایل بعدا داینامیک باشد
-        const file=JSON.stringify(File)
+        const file = JSON.stringify(File)
+        const file2 = JSON.stringify(File2)
         try {
             const data = {
                 message: "Create new file",
                 content: btoa(unescape(encodeURIComponent(file)))
-              };
-              const functionThatReturnPromise = () => new Promise(resolve => setTimeout(resolve, 3000));
-              console.log(functionThatReturnPromise)
-              const response = await axios.put(`https://api.github.com/repos/artafps/artafps/contents/configs/Config-Web-EN.json`, data, {
+            };
+            const languageData = {
+                message: "Create new file",
+                content: btoa(unescape(encodeURIComponent(file2)))
+            };
+            const functionThatReturnPromise = () => new Promise(resolve => setTimeout(resolve, 3000));
+            console.log(functionThatReturnPromise)
+            const response = await axios.put(`https://api.github.com/repos/artafps/artafps/contents/configs/Config-Web-EN.json`, data, {
                 headers: {
-                  Authorization: `token ${accessToken}`
+                    Authorization: `token ${accessToken}`
                 }
-              });
-              toast.success('File created successfully!')
-              console.log('File created:', response.data);
+            });
+
+            const response2 = await axios.put(`https://api.github.com/repos/artafps/artafps/contents/configs/Language.json`, languageData, {
+                headers: {
+                    Authorization: `token ${accessToken}`
+                }
+            });
+            toast.success('File created successfully!')
+            console.log('File created:', response.data, response2.data);
         } catch (error) {
             toast.error('Error uploading file Check console')
-            
+
             console.error('Error uploading file:', error);
-           
+
         }
-        
+
     }
     useEffect(() => {
-        
+
         getData()
     }, []);
     return (<Fragment>
@@ -157,8 +169,8 @@ const MainLayoutAdmin = (Props) => {
                             If you want to start a personal site, just click the "Create".
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary"   data-bs-toggle="modal" data-bs-target="#exampleModal">Close</button>
-                            <button type="button" className="btn btn-success" onClick={handleCreateWebSite}  data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
+                            <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Close</button>
+                            <button type="button" className="btn btn-success" onClick={handleCreateWebSite} data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
                         </div>
                     </div>
                 </div>
@@ -180,39 +192,52 @@ const MainLayoutAdmin = (Props) => {
                             Apps
                         </li>
                         {
-                            StatusCreateWeb ? (<li type="button" style={{ cursor: 'pointer' }} className={pathname.split('/')[1] === 'dashboard' ? "active-page" : ''}>
-                                <a onClick={() => navigate('/dashboard/Header&Footer')} className={pathname.split('/')[1] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                            StatusCreateWeb ? (<li type="button" style={{ cursor: 'pointer' }} className={pathname.split('/')[2] === 'dashboard' ? "active-page" : ''}>
+                                <a onClick={() => navigate('/admin/dashboard/Header&Footer')} className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
                             </li>) : (
-                                <li type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ cursor: 'pointer' }} className={pathname.split('/')[1] === 'dashboard' ? "active-page" : ''}>
-                                    <a  className={pathname.split('/')[1] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                                <li type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ cursor: 'pointer' }} className={pathname.split('/')[2] === 'dashboard' ? "active-page" : ''}>
+                                    <a className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
                                 </li>
                             )
                         }
 
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/file-manager' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/file-manager')} className={pathname === '/file-manager' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/file-manager' ? "active-page" : ''}>
+                            <a onClick={() => navigate('/admin/file-manager')} className={pathname === '/admin/file-manager' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/create-file' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/create-file')} className={pathname === '/create-file' ? "active" : ''}><i className="material-icons-two-tone">
+                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/create-file' ? "active-page" : ''}>
+                            <a onClick={() => navigate('/admin/create-file')} className={pathname === '/admin/create-file' ? "active" : ''}><i className="material-icons-two-tone">
                                 note_add
                             </i>Create file</a>
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/upload-file' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/upload-file')} className={pathname === '/upload-file' ? "active" : ''}><i className="material-icons-two-tone">
+                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/upload-file' ? "active-page" : ''}>
+                            <a onClick={() => navigate('/admin/upload-file')} className={pathname === '/admin/upload-file' ? "active" : ''}><i className="material-icons-two-tone">
                                 upload_file
                             </i>Upload file</a>
                         </li>
                         <li className="sidebar-title">
+                            Blog
+                        </li>
+                        
+                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/blog' ? "active-page" : ''}>
+                            <a onClick={() => navigate('/admin/blog')} className={pathname === '/admin/blog' ? "active" : ''}><i className="material-icons-two-tone">receipt_long</i>Blog List</a>
+                        </li>
+
+                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/addblog' ? "active-page" : ''}>
+                            <a onClick={() => navigate('/admin/addblog')} className={pathname === '/admin/addblog' ? "active" : ''}><i className="material-icons-two-tone">note_add</i>Add Blog</a>
+
+                        </li>
+                        <li className="sidebar-title">
                             Other
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/document' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/document')} className={pathname === '/document' ? "active" : ''}><i className="material-icons-two-tone">description</i>Document</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/document' ? "active-page" : ''}>
+                            <a onClick={() => navigate('/admin/document')} className={pathname === '/admin/document' ? "active" : ''}><i className="material-icons-two-tone">description</i>Document</a>
 
                         </li>
                     </ul>
 
                 </div>
             </div>
+            
             <div className="app-container">
                 {/* <div className="search">
                     <form>

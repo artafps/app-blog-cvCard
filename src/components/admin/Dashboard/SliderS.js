@@ -79,7 +79,9 @@ const SliderS = () => {
     const [TEXTCIRCLE, setTEXTCIRCLE] = useState();
     const [LINKCIRCLE, setLINKCIRCLE] = useState();
 
-    const configNameFile = 'Config-Web-EN.json'
+    const Lang = localStorage.getItem('selectLanguage');
+
+    const configNameFile =`Config-Web-${Lang}.json`
 
     const accessToken = localStorage.getItem('AC');
     const OwnerName = localStorage.getItem('Owner');

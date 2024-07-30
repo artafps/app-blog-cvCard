@@ -38,14 +38,15 @@ const  Blogs= () => {
     };
 
 
-   
-
-
-    const configNameFile = 'Config-Web-EN.json'
-
     const accessToken = localStorage.getItem('AC');
     const OwnerName = localStorage.getItem('Owner');
     const RepoName = localStorage.getItem('Repo');
+    const Lang = localStorage.getItem('selectLanguage');
+
+
+    const configNameFile =`Config-Web-${Lang}.json`
+
+    
 
     const [ONCHANGESAVE, setONCHANGESAVE] = useState(false);
     const [Sha, setSha] = useState('');

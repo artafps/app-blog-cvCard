@@ -67,12 +67,13 @@ const DonateBTNS = () => {
         }
     };
 
-
-    const configNameFile = 'Config-Web-EN.json'
-
+    const Lang = localStorage.getItem('selectLanguage');
     const accessToken = localStorage.getItem('AC');
     const OwnerName = localStorage.getItem('Owner');
     const RepoName = localStorage.getItem('Repo');
+
+    const configNameFile =`Config-Web-${Lang}.json`
+
 
     const [ONCHANGESAVE, setONCHANGESAVE] = useState(false);
     const [Sha, setSha] = useState('');

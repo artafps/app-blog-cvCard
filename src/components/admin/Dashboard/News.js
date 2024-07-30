@@ -42,8 +42,9 @@ const News = () => {
 
 
 
+    const Lang = localStorage.getItem('selectLanguage');
 
-    const configNameFile = 'Config-Web-EN.json'
+    const configNameFile =`Config-Web-${Lang}.json`
 
     const accessToken = localStorage.getItem('AC');
     const OwnerName = localStorage.getItem('Owner');

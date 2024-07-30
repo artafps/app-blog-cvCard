@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -10,11 +11,15 @@ const Login = () => {
     
     const navigate = useNavigate()
     const handleSetDataInLocalStorange = () => {
+        if(Owner.trim()===''||Repo.trim()===''||AC.trim()===''||CT.trim()===''){
+            return toast.warn('Hello Checked All Input')
+        }
         localStorage.setItem("Owner", Owner)
         localStorage.setItem("Repo", Repo)
         localStorage.setItem("AC", AC)
         localStorage.setItem("CT", CT)
-        navigate('/file-manager')
+        navigate('/admin/file-manager')
+        return toast.success('Hello Welecome To Dashboard ')
     }
     return (<Fragment>
 

@@ -1,9 +1,7 @@
 {
-    "Language": [
-        "en"
-    ],
+   
     "Header": {
-        "Status": "true",
+        "Status": "",
         "Logo": {
             "Title": "",
             "Text": "",
@@ -12,7 +10,7 @@
         "Social": []
     },
     "Slider": {
-        "Status": "false",
+        "Status": "",
         "H1Text": "",
         "Description": "",
         "BtnText": "",
@@ -23,74 +21,51 @@
         "LinkCircle": ""
     },
     "Skils": {
-        "Status": "false",
+        "Status": "",
         "Arr": [
-            {
-                "Title": "",
-                "ImageURI": ""
-            }
         ]
     },
     "News": {
         "Status": "",
         "Title": "",
-        "Arr": [
-            {
-                "ImageURI":"",
-                "TopTitle": "",
-                "SubTitle": "",
-                "Direction": "",
-                "BtnText": "",
-                "LinkBtn": ""
-            }
-        ]
+        "Arr": []
     },
     "Blog": {
-        "Title": ""
-    },
-    "Project": {
         "Status": "",
         "Title": "",
         "Arr": [
             {
-                "Title": "",
+                "h1": "",
                 "ImageURI": "",
-                "Description": "",
-                "Percent": "",
-                "Link": ""
+                "Content": "",
+                "Lable":"",
+                "Category":""
             }
         ]
+    },
+    "Project": {
+        "Status": "",
+        "Title": "",
+        "Arr": []
     },
     "Plan": {
         "Status": "",
         "Title": "",
         "Arr": [
-            {
-                "TopTitle": "",
-                "Title": "",
-                "Percent": "",
-                "Description": "",
-                "Cheked": ""
-            }
         ]
     },
     "Footer": {
-        "Status": "true",
+        "Status": "",
         "Logo": {
-            "Title": "awdwadwd",
-            "Text": "artafs",
-            "ImageURI": "https://api.github.com/repos/artafps/artafps/contents/logo/logoFooter-f-IMG_20220521_134731.jpg"
+            "Title": "",
+            "Text": "",
+            "ImageURI": ""
         },
-        "Social": [
-            {
-                "Icone": "",
-                "Link": ""
-            }
-        ],
+        "Social": [],
         "PowerBy": {
-            "Status": "true",
-            "Text": "wadawd",
-            "Link": "wadawd"
+            "Status": "",
+            "Text": "",
+            "Link": ""
         }
     },
     "Community": {
@@ -103,26 +78,17 @@
         "Status": "",
         "Title": "",
         "Arr": [
-            {
-                "ImageURI": "",
-                "Name": "",
-                "Gitlab":"",
-                "Github":"",
-                "Tel":"",
-                "Ins":"",
-                "Twit":"",
-                "Lid":"",
-                "Drib":"",
-                "Disc":""
-            }
+            
         ]
     },
-    "Donate":{
+    "Donate": {
         "Status": "",
-        "Title":"",
-        "SubTitle":"",
-        "Items":[]
+        "Title": "",
+        "SubTitle": "",
+        "Items": []
     },
-    "Lable":[],
-    "Category":[]
+    "Lable": [
+       
+    ],
+    "Category": []
 }

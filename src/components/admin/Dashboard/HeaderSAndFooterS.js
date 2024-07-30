@@ -9,7 +9,9 @@ import { getFileContent } from "../../../utils/getFileGit";
 const HeaderSAndFooterS = () => {
 
     ///File name
-    const configNameFile = 'Config-Web-EN.json'
+    const Lang = localStorage.getItem('selectLanguage');
+
+    const configNameFile =`Config-Web-${Lang}.json`
     // state get
     // prograsces 
     const [Progress, setProgress] = useState(0);
@@ -35,6 +37,11 @@ const HeaderSAndFooterS = () => {
     const [STAUSPOWERBY, setSTAUSPOWERBY] = useState(false);
     const [POWERBYNAME, setPOWERBYNAME] = useState("");
     const [POWERBYLINK, setPOWERBYLINK] = useState("");
+
+    const [STAUSCommunity, setSTAUSCommunity] = useState(false);
+    const [TextCommunity, setTextCommunity] = useState("");
+    const [BtnTextCommunity, setBtnTextCommunity] = useState("");
+    const [LinkBtnCommunity, setLinkBtnCommunity] = useState("");
 
     const accessToken = localStorage.getItem('AC');
     const OwnerName = localStorage.getItem('Owner');
@@ -145,8 +152,10 @@ const HeaderSAndFooterS = () => {
             setSTAUSPOWERBY(DATAGIT.Footer.PowerBy.Status)
             setPOWERBYNAME(DATAGIT.Footer.PowerBy.Text)
             setPOWERBYLINK(DATAGIT.Footer.PowerBy.Link)
-
-
+            setSTAUSCommunity(DATAGIT.Community.Status)
+            setTextCommunity(DATAGIT.Community.Text)
+            setBtnTextCommunity(DATAGIT.Community.BtnText)
+            setLinkBtnCommunity(DATAGIT.Community.LinkBtn)
             console.log('File content:', res);
         })
             .catch((error) => {
@@ -561,6 +570,87 @@ const HeaderSAndFooterS = () => {
             setONCHANGESAVE(false)
         }
     }
+    const handleChangeStatusCommunity = (events) => {
+        let Data = localStorage.getItem('DATAGITBACK')
+        if (Data === null) {
+            DATAGITARRY.Community.Status = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+            setSTAUSCommunity(events)
+        } else {
+            const newData = JSON.parse(Data)
+            newData.Community.Status = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+            setSTAUSCommunity(events)
+        }
+        Data = localStorage.getItem('DATAGITBACK')
+        console.log(Data, "--------------", JSON.stringify(DATAGITARRY))
+        if (JSON.stringify(DATAGITARRY) !== Data) {
+            setONCHANGESAVE(true)
+        } else {
+            setONCHANGESAVE(false)
+        }
+    }
+
+    const handleChangeTextCommunity = (events) => {
+        let Data = localStorage.getItem('DATAGITBACK')
+        if (Data === null) {
+            DATAGITARRY.Community.Text = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+            setTextCommunity(events)
+        } else {
+            const newData = JSON.parse(Data)
+            newData.Community.Text = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+            setTextCommunity(events)
+        }
+        Data = localStorage.getItem('DATAGITBACK')
+        console.log(Data, "--------------", JSON.stringify(DATAGITARRY))
+        if (JSON.stringify(DATAGITARRY) !== Data) {
+            setONCHANGESAVE(true)
+        } else {
+            setONCHANGESAVE(false)
+        }
+    }
+    const handleChangeBtnTextCommunity = (events) => {
+        let Data = localStorage.getItem('DATAGITBACK')
+        if (Data === null) {
+            DATAGITARRY.Community.BtnText = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+            setBtnTextCommunity(events)
+        } else {
+            const newData = JSON.parse(Data)
+            newData.Community.BtnText = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+            setBtnTextCommunity(events)
+        }
+        Data = localStorage.getItem('DATAGITBACK')
+        console.log(Data, "--------------", JSON.stringify(DATAGITARRY))
+        if (JSON.stringify(DATAGITARRY) !== Data) {
+            setONCHANGESAVE(true)
+        } else {
+            setONCHANGESAVE(false)
+        }
+    }
+    const handleChangeLinkBtnCommunity = (events) => {
+        let Data = localStorage.getItem('DATAGITBACK')
+        if (Data === null) {
+            DATAGITARRY.Community.LinkBtn = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+            setLinkBtnCommunity(events)
+        } else {
+            const newData = JSON.parse(Data)
+            newData.Community.LinkBtn = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+            setLinkBtnCommunity(events)
+        }
+        Data = localStorage.getItem('DATAGITBACK')
+        console.log(Data, "--------------", JSON.stringify(DATAGITARRY))
+        if (JSON.stringify(DATAGITARRY) !== Data) {
+            setONCHANGESAVE(true)
+        } else {
+            setONCHANGESAVE(false)
+        }
+    }
 
     const HANDLESAVE = async () => {
         await editFile(configNameFile, localStorage.getItem('DATAGITBACK'), Sha, accessToken)
@@ -654,14 +744,14 @@ const HeaderSAndFooterS = () => {
                             handleDelete(data2.path, data2.sha)
                             setProgress(0)
                         }, 7000);
-                    }else{
+                    } else {
                         setProgress2(100)
-                    setFile3(null)
-                    setTimeout(() => {
-                        setProgress2(0)
-                    }, 1000);
+                        setFile3(null)
+                        setTimeout(() => {
+                            setProgress2(0)
+                        }, 1000);
                     }
-                }else {
+                } else {
                     setProgress2(100)
                     setFile3(null)
                     setTimeout(() => {
@@ -733,7 +823,7 @@ const HeaderSAndFooterS = () => {
                             handleDelete(data2.path, data2.sha)
                             setProgress2(0)
                         }, 7000);
-                    }else{
+                    } else {
                         setProgress2(100)
                         setFile3(null)
                         setTimeout(() => {
@@ -872,13 +962,13 @@ const HeaderSAndFooterS = () => {
                             <input checked={SOCIALDARKMODEHEADER} onChange={() => setSOCIALDARKMODEHEADER(!SOCIALDARKMODEHEADER)} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault2345" />
                             <label class="form-check-label" for="flexSwitchCheckDefault2345">  On Dark Mode?</label>
                         </div>
-                        
+
 
                         <div class="input-group mb-3">
-                        <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
-                        <input  value={SOCIALMEDIALINKHEADER} onChange={(e) => { setSOCIALMEDIALINKHEADER(e.target.value) }}   type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
-                        <br />
-                    </div>
+                            <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
+                            <input value={SOCIALMEDIALINKHEADER} onChange={(e) => { setSOCIALMEDIALINKHEADER(e.target.value) }} type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
+                            <br />
+                        </div>
                         {file2 !== null ? <div class="alert alert-custom" role="alert">
                             <div class="alert-content">
                                 <div>
@@ -1113,7 +1203,33 @@ const HeaderSAndFooterS = () => {
                 </div>
             </div>
         </div>
+        <div className="card">
+            <div className=" widget widget-payment-request"><div className="card-header">
+                <h5 className="card-title">Community</h5>
+            </div>
+                <div className="card-body">
+                    <div class="form-check form-switch">
+                        <input checked={STAUSCommunity} onChange={() => handleChangeStatusCommunity(!STAUSCommunity)} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault234455sd" />
+                        <label class="form-check-label" for="flexSwitchCheckDefault234455sd">on STAUS Community ?</label>
+                    </div>
+                    <br />
+                    <label class="form-check-label" >Text Community  </label>
+                    <input value={TextCommunity} onChange={e => handleChangeTextCommunity(e.target.value)} type="text" class="form-control" placeholder="Name PowerBy " aria-label="Username" aria-describedby="basic-addon1" />
 
+                    <br />
+                    <label class="form-check-label" >Btn Text Community  </label>
+                    <input value={BtnTextCommunity } onChange={e => handleChangeBtnTextCommunity(e.target.value)} type="text" class="form-control" placeholder="Name PowerBy " aria-label="Username" aria-describedby="basic-addon1" />
+
+                    <br />
+                    <label class="form-check-label" for="flexSwitchCheckDefault234"> Link Community :</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">https://</span>
+                        <input value={LinkBtnCommunity} onChange={(e) => { handleChangeLinkBtnCommunity(e.target.value) }} type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </Dashboard>
     );
 }
