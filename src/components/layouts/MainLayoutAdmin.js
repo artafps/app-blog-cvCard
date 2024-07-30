@@ -190,7 +190,7 @@ const MainLayoutAdmin = (Props) => {
                         </li>
                         {
                             StatusCreateWeb ? (<li type="button" style={{ cursor: 'pointer' }} className={pathname.split('/')[2] === 'dashboard' ? "active-page" : ''}>
-                                <a onClick={() => navigate(`${cfg.imgURI}/admin/dashboard/Header&Footer`)} className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                                <a onClick={() => navigate(`${cfg.imgURI}/admin/dashboard/hf`)} className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
                             </li>) : (
                                 <li type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ cursor: 'pointer' }} className={pathname.split('/')[2] === 'dashboard' ? "active-page" : ''}>
                                     <a className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
