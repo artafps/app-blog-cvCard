@@ -20,6 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ListBlog from './components/admin/ListBlog';
 import CreateBlog from './components/admin/CreateBlog';
+import cfg from './Config.json'
 function App() {
   return (
     <Fragment>
@@ -35,24 +36,24 @@ function App() {
       />
       <Router>
         <Routes>
-          <Route path="/" exact element={<Login />} />
-          <Route path="/admin/dashboard/Header&Footer" exact element={<HeaderSAndFooterS />} />
-          <Route path="/admin/dashboard/SliderS" exact element={<SliderS />} />
-          <Route path="/admin/dashboard/DonateBTNS" exact element={<DonateBTNS />} />
-          <Route path="/admin/dashboard/Skils" exact element={<LanguageBoxS />} />
-          <Route path="/admin/dashboard/News" exact element={<News />} />
-          <Route path="/admin/dashboard/Blogs" exact element={<Blogs />} />
-          <Route path="/admin/dashboard/ProjectS" exact element={<ProjectS />} />
-          <Route path="/admin/dashboard/MyTeamS" exact element={<MyTeamS />} />
-          <Route path="/admin/dashboard/PlanS" exact element={<PlanS />} />
-          <Route path="/admin/dashboard/Labels&Categorys" exact element={<LabelsAndCategorys />} />
-          <Route path="/admin/dashboard/Change-Language-Web" exact element={<ChangeLangS />} />
-          <Route path="/admin/document" exact element={<Document />} />
-          <Route path="/admin/file-manager" exact element={<FileManager />} />
-          <Route path="/admin/upload-file" exact element={<UploadFile />} />
-          <Route path="/admin/create-file" exact element={<FileUploader />} />
-          <Route path="/admin/blog" exact element={<ListBlog />} />
-          <Route path="/admin/addblog" exact element={<CreateBlog />} />
+          <Route path={`${cfg.imgURI}/`} exact element={<Login />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/hf`} exact element={<HeaderSAndFooterS />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/sliders`} exact element={<SliderS />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/donate-btn`} exact element={<DonateBTNS />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/skil`} exact element={<LanguageBoxS />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/news`} exact element={<News />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/blog`} exact element={<Blogs />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/project`} exact element={<ProjectS />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/myteam`} exact element={<MyTeamS />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/plan`} exact element={<PlanS />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/lc`} exact element={<LabelsAndCategorys />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/change-language-web`} exact element={<ChangeLangS />} />
+          <Route path={`${cfg.imgURI}/admin/document`} exact element={<Document />} />
+          <Route path={`${cfg.imgURI}/admin/file-manager`} exact element={<FileManager />} />
+          <Route path={`${cfg.imgURI}/admin/upload-file`} exact element={<UploadFile />} />
+          <Route path={`${cfg.imgURI}/admin/create-file`} exact element={<FileUploader />} />
+          <Route path={`${cfg.imgURI}/admin/blog`} exact element={<ListBlog />} />
+          <Route path={`${cfg.imgURI}/admin/addblog`} exact element={<CreateBlog />} />
         </Routes >
       </Router >
     </Fragment>

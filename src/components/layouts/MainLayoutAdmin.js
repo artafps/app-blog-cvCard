@@ -6,18 +6,16 @@ import File from '../admin/Index.json'
 import File2 from '../admin/Language.json'
 import { fileToBase64 } from "../../utils/fileToBase64";
 import { toast } from "react-toastify";
-
+import cfg from '../../Config.json'
 const MainLayoutAdmin = (Props) => {
     const [profileImage, setProfileImage] = useState('');
     const [fullName, setFullName] = useState('');
     const [OPEN, setOPEN] = useState(true);
-    const [file, setFile] = useState(null);
     const navigate = useNavigate()
     const { pathname } = useLocation();
     const OwnerName = localStorage.getItem('Owner');
     const accessToken = localStorage.getItem('AC');
     const ClassicToken = localStorage.getItem('CT');
-    const [files, setFiles] = useState([]);
     const [StatusCreateWeb, SetStatusCreateWeb] = useState(false);
     const RepoName = localStorage.getItem('Repo');
     useEffect(() => {
@@ -106,7 +104,6 @@ const MainLayoutAdmin = (Props) => {
             if (data.length > 0) {
                 SetStatusCreateWeb(true)
             }
-            setFiles(files);
         }).catch(err => {
             console.error("Error getting file list:", err);
         });
@@ -193,7 +190,7 @@ const MainLayoutAdmin = (Props) => {
                         </li>
                         {
                             StatusCreateWeb ? (<li type="button" style={{ cursor: 'pointer' }} className={pathname.split('/')[2] === 'dashboard' ? "active-page" : ''}>
-                                <a onClick={() => navigate('/admin/dashboard/Header&Footer')} className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                                <a onClick={() => navigate(`${cfg.imgURI}/admin/dashboard/Header&Footer`)} className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
                             </li>) : (
                                 <li type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ cursor: 'pointer' }} className={pathname.split('/')[2] === 'dashboard' ? "active-page" : ''}>
                                     <a className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
@@ -202,15 +199,15 @@ const MainLayoutAdmin = (Props) => {
                         }
 
                         <li style={{ cursor: 'pointer' }} className={pathname === '/admin/file-manager' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/admin/file-manager')} className={pathname === '/admin/file-manager' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/file-manager`)} className={pathname === '/admin/file-manager' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
                         </li>
                         <li style={{ cursor: 'pointer' }} className={pathname === '/admin/create-file' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/admin/create-file')} className={pathname === '/admin/create-file' ? "active" : ''}><i className="material-icons-two-tone">
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/create-file`)} className={pathname === '/admin/create-file' ? "active" : ''}><i className="material-icons-two-tone">
                                 note_add
                             </i>Create file</a>
                         </li>
                         <li style={{ cursor: 'pointer' }} className={pathname === '/admin/upload-file' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/admin/upload-file')} className={pathname === '/admin/upload-file' ? "active" : ''}><i className="material-icons-two-tone">
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/upload-file`)} className={pathname === '/admin/upload-file' ? "active" : ''}><i className="material-icons-two-tone">
                                 upload_file
                             </i>Upload file</a>
                         </li>
@@ -219,18 +216,18 @@ const MainLayoutAdmin = (Props) => {
                         </li>
                         
                         <li style={{ cursor: 'pointer' }} className={pathname === '/admin/blog' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/admin/blog')} className={pathname === '/admin/blog' ? "active" : ''}><i className="material-icons-two-tone">receipt_long</i>Blog List</a>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/blog`)} className={pathname === '/admin/blog' ? "active" : ''}><i className="material-icons-two-tone">receipt_long</i>Blog List</a>
                         </li>
 
                         <li style={{ cursor: 'pointer' }} className={pathname === '/admin/addblog' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/admin/addblog')} className={pathname === '/admin/addblog' ? "active" : ''}><i className="material-icons-two-tone">note_add</i>Add Blog</a>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/addblog`)} className={pathname === '/admin/addblog' ? "active" : ''}><i className="material-icons-two-tone">note_add</i>Add Blog</a>
 
                         </li>
                         <li className="sidebar-title">
                             Other
                         </li>
                         <li style={{ cursor: 'pointer' }} className={pathname === '/admin/document' ? "active-page" : ''}>
-                            <a onClick={() => navigate('/admin/document')} className={pathname === '/admin/document' ? "active" : ''}><i className="material-icons-two-tone">description</i>Document</a>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/document`)} className={pathname === '/admin/document' ? "active" : ''}><i className="material-icons-two-tone">description</i>Document</a>
 
                         </li>
                     </ul>
