@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import { Octokit } from "@octokit/rest";
 import { getFileContent } from "../../../utils/getFileGit";
 import { fileToBase64 } from "../../../utils/fileToBase64";
+import cfg from '../../../Config.json'
+import { useNavigate } from "react-router";
+
 const SliderS = () => {
     const input = useRef(null)
     const [IMAGEURI1, setIMAGEURI1] = useState(null);
@@ -13,6 +16,7 @@ const SliderS = () => {
     const [IMAGEURI2, setIMAGEURI2] = useState(null);
     const [Progress, setProgress] = useState(0);
     const [Progress2, setProgress2] = useState(0);
+    const navigate = useNavigate()
 
     const handleGetFileContent = async (fileUrl) => {
         try {
@@ -20,6 +24,10 @@ const SliderS = () => {
             return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
         } catch (error) {
             console.error('Error fetching file content:', error);
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error; // ارور ممکن است برای مدیریت خطاها بازگردانده شود
         }
     };
@@ -42,6 +50,10 @@ const SliderS = () => {
         }).catch(err => {
             console.error("Error deleting file:", err);
             toast.error('Error deleting file!')
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     };
 
@@ -140,6 +152,10 @@ const SliderS = () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     useEffect(() => {
@@ -162,6 +178,10 @@ const SliderS = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error;
         }
     };
@@ -226,6 +246,10 @@ const SliderS = () => {
                     }, 5000);
                 }).catch(err => {
                     console.log('put err:', err)
+                    if(err.response.status===401){
+                        localStorage.clear()
+                        navigate(`${cfg.imgURI}/login`)
+                    }
                     toast.error('Error Upload  Check Console!')
                 });
 
@@ -300,6 +324,10 @@ const SliderS = () => {
                     }, 5000);
                 }).catch(err => {
                     console.log('put err:', err)
+                    if(err.response.status===401){
+                        localStorage.clear()
+                        navigate(`${cfg.imgURI}/login`)
+                    }
                     toast.error('Error Upload  Check Console!')
                 });
 

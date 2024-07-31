@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import cfg from '../../../Config.json'
+import { useNavigate } from 'react-router';
 function FileUploaderComponent() {
+  const navigate = useNavigate()
   const [fileName, setFileName] = useState('');
   const [fileContent, setFileContent] = useState('');
   const accessToken = localStorage.getItem('AC');
@@ -41,6 +43,10 @@ function FileUploaderComponent() {
     } catch (error) {
       toast.error('An error occurred while creating the file! Check Console')
       console.error('Error creating file:', error);
+      if(error.response.status===401){
+        localStorage.clear()
+        navigate(`${cfg.imgURI}/login`)
+    }
     }
   };
 

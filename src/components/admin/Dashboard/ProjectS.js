@@ -7,8 +7,11 @@ import { toast } from "react-toastify";
 import { useEffect, useRef, useState } from "react";
 import { getFileContent } from "../../../utils/getFileGit";
 import { fileToBase64 } from "../../../utils/fileToBase64";
+import cfg from '../../../Config.json'
+import { useNavigate } from "react-router";
 
 const ProjectS = () => {
+    const navigate = useNavigate()
 
     const handleGetFileContent = async (fileUrl) => {
         try {
@@ -16,6 +19,10 @@ const ProjectS = () => {
             return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
         } catch (error) {
             console.error('Error fetching file content:', error);
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error; // ارور ممکن است برای مدیریت خطاها بازگردانده شود
         }
     };
@@ -38,6 +45,10 @@ const ProjectS = () => {
         }).catch(err => {
             console.error("Error deleting file:", err);
             toast.error('Error deleting file!')
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     };
 
@@ -100,6 +111,10 @@ const ProjectS = () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     useEffect(() => {
@@ -122,6 +137,10 @@ const ProjectS = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error;
         }
     };
@@ -259,6 +278,10 @@ const ProjectS = () => {
                 }).catch(err => {
                     console.log('put err:', err)
                     toast.error('Error Upload  Check Console!')
+                    if(err.response.status===401){
+                        localStorage.clear()
+                        navigate(`${cfg.imgURI}/login`)
+                    }
                 });
             } else {
                 toast.warn('You have already selected this file for the logo')

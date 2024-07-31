@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import cfg from '../../Config.json'
@@ -18,11 +18,19 @@ const Login = () => {
         localStorage.setItem("Repo", Repo)
         localStorage.setItem("AC", AC)
         localStorage.setItem("CT", CT)
-        navigate(`${cfg.imgURI}/admin/file-manager`)
+        localStorage.setItem('selectLanguage', 'EN')
+        navigate(`${cfg.imgURI}/`)
         return toast.success('Hello Welecome To Dashboard ')
     }
+    localStorage.setItem('selectLanguage', 'EN')
+    useEffect(() => {
+        const ac = localStorage.getItem("AC")
+        if(ac!==null){
+            navigate(`${cfg.imgURI}/`) 
+            console.log(ac)
+        }
+    }, []);
     return (<Fragment>
-
         <div className="app app-auth-lock-screen align-content-stretch d-flex flex-wrap justify-content-end">
             <div className="app-auth-background">
             </div>

@@ -6,7 +6,10 @@ import { Octokit } from "@octokit/rest";
 import axios from "axios";
 import { fileToBase64 } from "../../../utils/fileToBase64";
 import { getFileContent } from "../../../utils/getFileGit";
+import cfg from '../../../Config.json'
+import { useNavigate } from "react-router";
 const HeaderSAndFooterS = () => {
+    const navigate = useNavigate()
 
     ///File name
     const Lang = localStorage.getItem('selectLanguage');
@@ -117,6 +120,10 @@ const HeaderSAndFooterS = () => {
             return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
         } catch (error) {
             console.error('Error fetching file content:', error);
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error; // ارور ممکن است برای مدیریت خطاها بازگردانده شود
         }
     };
@@ -182,6 +189,10 @@ const HeaderSAndFooterS = () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     useEffect(() => {
@@ -204,6 +215,10 @@ const HeaderSAndFooterS = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error;
         }
     };
@@ -354,6 +369,10 @@ const HeaderSAndFooterS = () => {
                 }).catch(err => {
                     console.log('put err:', err)
                     toast.error('Error Upload  Check Console!')
+                    if(err.response.status===401){
+                        localStorage.clear()
+                        navigate(`${cfg.imgURI}/login`)
+                    }
                 });
             } else {
                 toast.warn('You have already selected this file for the logo')
@@ -494,6 +513,10 @@ const HeaderSAndFooterS = () => {
                 }).catch(err => {
                     console.log('put err:', err)
                     toast.error('Error Upload  Check Console!')
+                    if(err.response.status===401){
+                        localStorage.clear()
+                        navigate(`${cfg.imgURI}/login`)
+                    }
                 });
             } else {
                 toast.warn('You have already selected this file for the logo')
@@ -686,6 +709,10 @@ const HeaderSAndFooterS = () => {
             toast.success('File Deleted Successfully!')
         }).catch(err => {
             console.error("Error deleting file:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             toast.error('Error deleting file!')
         });
     };
@@ -732,6 +759,10 @@ const HeaderSAndFooterS = () => {
                 }).catch(err => {
                     console.log('put err:', err)
                     toast.error('Error Upload  Check Console!')
+                    if(err.response.status===401){
+                        localStorage.clear()
+                        navigate(`${cfg.imgURI}/login`)
+                    }
                 });
 
                 if (route !== '') {
@@ -811,6 +842,10 @@ const HeaderSAndFooterS = () => {
                 }).catch(err => {
                     console.log('put err:', err)
                     toast.error('Error Upload  Check Console!')
+                    if(err.response.status===401){
+                        localStorage.clear()
+                        navigate(`${cfg.imgURI}/login`)
+                    }
                 });
 
                 if (route !== '') {

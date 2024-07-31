@@ -5,9 +5,12 @@ import { toast } from "react-toastify";
 import { useEffect, useRef, useState } from "react";
 import { getFileContent } from "../../utils/getFileGit";
 import { fileToBase64 } from "../../utils/fileToBase64";
+import cfg from '../../Config.json'
+import { useNavigate } from "react-router";
 
 const ListBlog = () => {
 
+    const navigate = useNavigate()
 
     const handleGetFileContent = async (fileUrl) => {
         try {
@@ -15,6 +18,10 @@ const ListBlog = () => {
             return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
         } catch (error) {
             console.error('Error fetching file content:', error);
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error; // ارور ممکن است برای مدیریت خطاها بازگردانده شود
         }
     };
@@ -36,6 +43,10 @@ const ListBlog = () => {
             toast.success('File Deleted Successfully!')
         }).catch(err => {
             console.error("Error deleting file:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             toast.error('Error deleting file!')
         });
     };
@@ -69,6 +80,10 @@ const ListBlog = () => {
         })
             .catch((error) => {
                 console.error('Error:', error);
+                if(error.response.status===401){
+                    localStorage.clear()
+                    navigate(`${cfg.imgURI}/login`)
+                }
             });
     }
     const getData = () => {
@@ -91,6 +106,10 @@ const ListBlog = () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     useEffect(() => {
@@ -116,6 +135,10 @@ const ListBlog = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error;
         }
     };
@@ -231,6 +254,10 @@ const ListBlog = () => {
                         }).catch(err => {
                             console.log('put err:', err)
                             toast.error('Error Upload  Check Console!')
+                            if(err.response.status===401){
+                                localStorage.clear()
+                                navigate(`${cfg.imgURI}/login`)
+                            }
                         });
                     } else {
                         toast.warn('You have already selected this file for the logo')
@@ -289,6 +316,10 @@ const ListBlog = () => {
             } catch (error) {
                 toast.error('Error uploading file! Check The Console')
                 console.error('Error uploading file:', error);
+                if(error.response.status===401){
+                    localStorage.clear()
+                    navigate(`${cfg.imgURI}/login`)
+                }
             }
         }
     }

@@ -3,7 +3,8 @@ import { Octokit } from '@octokit/rest';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getFileContent } from '../../../utils/getFileGit';
-
+import cfg from '../../../Config.json'
+import { useNavigate } from 'react-router';
 function FileMaping({ editFile }) {
   const [files, setFiles] = useState([]);
   const OwnerName = localStorage.getItem('Owner');
@@ -13,7 +14,7 @@ function FileMaping({ editFile }) {
   const [fileContent, setFileContent] = useState('');
   const [filePath, setfilePath] = useState('');
   const [Sha, setSha] = useState('');
-
+  const navigate = useNavigate()
 
 
   
@@ -33,6 +34,10 @@ function FileMaping({ editFile }) {
       setFiles(files);
     }).catch(err => {
       console.error("Error getting file list:", err);
+      if(err.response.status===401){
+        localStorage.clear()
+        navigate(`${cfg.imgURI}/login`)
+    }
     });
   }
   useEffect(() => {
@@ -68,6 +73,10 @@ function FileMaping({ editFile }) {
     }).catch(err => {
       console.error("Error deleting file:", err);
       toast.error('Error deleting file!')
+      if(err.response.status===401){
+        localStorage.clear()
+        navigate(`${cfg.imgURI}/login`)
+    }
     });
   };
   const formatFileSize = (size) => {
@@ -92,6 +101,10 @@ function FileMaping({ editFile }) {
     })
       .catch((error) => {
         console.error('Error:', error);
+        if(error.response.status===401){
+          localStorage.clear()
+          navigate(`${cfg.imgURI}/login`)
+      }
       });
   }
   const handleContentChange = (event) => {

@@ -6,7 +6,11 @@ import { Octokit } from "@octokit/rest";
 import { toast } from "react-toastify";
 import { getFileContent } from "../../../utils/getFileGit";
 import { fileToBase64 } from "../../../utils/fileToBase64";
+import cfg from '../../../Config.json'
+import { useNavigate } from "react-router";
+
 const LanguageBoxS = () => {
+    const navigate = useNavigate()
 
 
     const handleGetFileContent = async (fileUrl) => {
@@ -15,6 +19,10 @@ const LanguageBoxS = () => {
             return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
         } catch (error) {
             console.error('Error fetching file content:', error);
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error; // ارور ممکن است برای مدیریت خطاها بازگردانده شود
         }
     };
@@ -36,6 +44,10 @@ const LanguageBoxS = () => {
             toast.success('File Deleted Successfully!')
         }).catch(err => {
             console.error("Error deleting file:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             toast.error('Error deleting file!')
         });
     };
@@ -89,6 +101,10 @@ const LanguageBoxS = () => {
         })
             .catch((error) => {
                 console.error('Error:', error);
+                if(error.response.status===401){
+                    localStorage.clear()
+                    navigate(`${cfg.imgURI}/login`)
+                }
             });
     }
     const getData = () => {
@@ -111,6 +127,10 @@ const LanguageBoxS = () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     useEffect(() => {
@@ -133,6 +153,10 @@ const LanguageBoxS = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error;
         }
     };
@@ -255,6 +279,10 @@ const LanguageBoxS = () => {
                 }).catch(err => {
                     console.log('put err:', err)
                     toast.error('Error Upload  Check Console!')
+                    if(err.response.status===401){
+                        localStorage.clear()
+                        navigate(`${cfg.imgURI}/login`)
+                    }
                 });
             } else {
                 toast.warn('You have already selected this file for the logo')

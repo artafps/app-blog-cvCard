@@ -1,24 +1,29 @@
 import { Octokit } from "@octokit/rest";
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import File from '../admin/Index.json'
 import File2 from '../admin/Language.json'
 import { fileToBase64 } from "../../utils/fileToBase64";
 import { toast } from "react-toastify";
 import cfg from '../../Config.json'
 const MainLayoutAdmin = (Props) => {
+
     const [profileImage, setProfileImage] = useState('');
     const [fullName, setFullName] = useState('');
     const [OPEN, setOPEN] = useState(true);
     const navigate = useNavigate()
-    const { pathname } = useLocation();
+    const { pathname,search } = useLocation();
     const OwnerName = localStorage.getItem('Owner');
     const accessToken = localStorage.getItem('AC');
     const ClassicToken = localStorage.getItem('CT');
     const [StatusCreateWeb, SetStatusCreateWeb] = useState(false);
     const RepoName = localStorage.getItem('Repo');
     useEffect(() => {
+        if(search.split("?").length===2){
+            console.log(search)
+            navigate(search.split("?")[1])
+        }
         const fetchFullName = async () => {
             try {
                 const query = `
@@ -41,6 +46,10 @@ const MainLayoutAdmin = (Props) => {
                 setFullName(viewerName);
             } catch (error) {
                 console.error('Error fetching full name:', error);
+                if(error.response.status===401){
+                    localStorage.clear()
+                    navigate(`${cfg.imgURI}/login`)
+                }
             }
         };
 
@@ -67,7 +76,12 @@ const MainLayoutAdmin = (Props) => {
                 const imageUrl = response.data.data.viewer.avatarUrl;
                 setProfileImage(imageUrl);
             } catch (error) {
+
                 console.error('Error fetching profile image:', error);
+                if(error.response.status===401){
+                    localStorage.clear()
+                    navigate(`${cfg.imgURI}/login`)
+                }
             }
         };
 
@@ -106,6 +120,10 @@ const MainLayoutAdmin = (Props) => {
             }
         }).catch(err => {
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     const handleCreateWebSite = async () => {
@@ -140,7 +158,10 @@ const MainLayoutAdmin = (Props) => {
             toast.error('Error uploading file Check console')
 
             console.error('Error uploading file:', error);
-
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         }
 
     }
@@ -198,16 +219,16 @@ const MainLayoutAdmin = (Props) => {
                             )
                         }
 
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/file-manager' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/file-manager`)} className={pathname === '/admin/file-manager' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === '/' ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/`)} className={pathname === '/' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/create-file' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/create-file`)} className={pathname === '/admin/create-file' ? "active" : ''}><i className="material-icons-two-tone">
+                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/create-file' ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/create-file`)} className={pathname === '${cfg.imgURI}/admin/create-file' ? "active" : ''}><i className="material-icons-two-tone">
                                 note_add
                             </i>Create file</a>
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/upload-file' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/upload-file`)} className={pathname === '/admin/upload-file' ? "active" : ''}><i className="material-icons-two-tone">
+                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/upload-file' ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/upload-file`)} className={pathname === '${cfg.imgURI}/admin/upload-file' ? "active" : ''}><i className="material-icons-two-tone">
                                 upload_file
                             </i>Upload file</a>
                         </li>
@@ -215,19 +236,19 @@ const MainLayoutAdmin = (Props) => {
                             Blog
                         </li>
                         
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/blog' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/blog`)} className={pathname === '/admin/blog' ? "active" : ''}><i className="material-icons-two-tone">receipt_long</i>Blog List</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/blog' ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/blog`)} className={pathname === '${cfg.imgURI}/admin/blog' ? "active" : ''}><i className="material-icons-two-tone">receipt_long</i>Blog List</a>
                         </li>
 
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/addblog' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/addblog`)} className={pathname === '/admin/addblog' ? "active" : ''}><i className="material-icons-two-tone">note_add</i>Add Blog</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/addblog' ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/addblog`)} className={pathname === '${cfg.imgURI}/admin/addblog' ? "active" : ''}><i className="material-icons-two-tone">note_add</i>Add Blog</a>
 
                         </li>
                         <li className="sidebar-title">
                             Other
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/admin/document' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/document`)} className={pathname === '/admin/document' ? "active" : ''}><i className="material-icons-two-tone">description</i>Document</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/document' ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/document`)} className={pathname === '${cfg.imgURI}/admin/document' ? "active" : ''}><i className="material-icons-two-tone">description</i>Document</a>
 
                         </li>
                     </ul>

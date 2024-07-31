@@ -5,8 +5,11 @@ import Dashboard from "../dashboard";
 import { Octokit } from "@octokit/rest";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import cfg from '../../../Config.json'
+import { useNavigate } from "react-router";
 
 const LabelsAndCategorys = () => {
+    const navigate = useNavigate()
 
     const handleGetFileContent = async (fileUrl) => {
         try {
@@ -14,6 +17,10 @@ const LabelsAndCategorys = () => {
             return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
         } catch (error) {
             console.error('Error fetching file content:', error);
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error; // ارور ممکن است برای مدیریت خطاها بازگردانده شود
         }
     };
@@ -35,6 +42,10 @@ const LabelsAndCategorys = () => {
             toast.success('File Deleted Successfully!')
         }).catch(err => {
             console.error("Error deleting file:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             toast.error('Error deleting file!')
         });
     };
@@ -92,6 +103,10 @@ const LabelsAndCategorys = () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     useEffect(() => {
@@ -114,6 +129,10 @@ const LabelsAndCategorys = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error;
         }
     };

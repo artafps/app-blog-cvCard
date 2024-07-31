@@ -3,9 +3,13 @@ import MainLayoutAdmin from "../layouts/MainLayoutAdmin";
 import axios from "axios";
 import { fileToBase64 } from "../../utils/fileToBase64";
 import { toast } from "react-toastify";
+import cfg from '../../Config.json'
+import { useNavigate } from "react-router";
 
 
 const UploadFile = () => {
+    const navigate = useNavigate()
+
     const input = useRef(null)
     const [file, setFile] = useState(null);
     const OwnerName = localStorage.getItem('Owner');
@@ -45,6 +49,10 @@ const UploadFile = () => {
             toast.success('File uploaded successfully!')
         } catch (error) {
             toast.error('Error uploading file! Check The Console')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             console.error('Error uploading file:', error);
         }
     };

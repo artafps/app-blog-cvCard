@@ -5,9 +5,9 @@ import { Octokit } from "@octokit/rest";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import File from '../Index.json'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";import cfg from '../../../Config.json'
 const ChangeLangS = () => {
-
+    const navigate = useNavigate()
     const handleGetFileContent = async (fileUrl) => {
         try {
             const response = await axios.get(fileUrl);
@@ -36,12 +36,15 @@ const ChangeLangS = () => {
         }).catch(err => {
             console.error("Error deleting file:", err);
             toast.error('Error deleting file!')
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     };
 
 
 
-    const navigate = useNavigate()
 
 
     const configNameFile = 'Language.json'
@@ -92,7 +95,12 @@ const ChangeLangS = () => {
                 }
             })
         }).catch(err => {
+            
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     useEffect(() => {
@@ -115,6 +123,10 @@ const ChangeLangS = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error;
         }
     };
@@ -156,6 +168,10 @@ const ChangeLangS = () => {
             toast.error('Error uploading file Check console')
 
             console.error('Error uploading file:', error);
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
 
         }
 

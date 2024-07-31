@@ -5,8 +5,11 @@ import { Octokit } from "@octokit/rest";
 import { useEffect, useRef, useState } from "react";
 import { getFileContent } from "../../utils/getFileGit";
 import { fileToBase64 } from "../../utils/fileToBase64";
+import cfg from '../../Config.json'
+import { useNavigate } from "react-router";
 
 const AddBlog = () => {
+    const navigate = useNavigate()
 
     const handleGetFileContent = async (fileUrl) => {
         try {
@@ -18,27 +21,7 @@ const AddBlog = () => {
         }
     };
 
-    const handleDelete = (path, sha) => {
-        const octokit = new Octokit({
-            auth: accessToken
-        });
-        const owner = OwnerName;
-        const repo = RepoName;
-        octokit.repos.deleteFile({
-            owner: owner,
-            repo: repo,
-            path: path,
-            message: "Delete file",
-            sha: sha
-        }).then(response => {
-            console.log("File deleted:", response.data);
-            toast.success('File Deleted Successfully!')
-        }).catch(err => {
-            console.error("Error deleting file:", err);
-            toast.error('Error deleting file!')
-        });
-    };
-
+   
 
 
     const Lang = localStorage.getItem('selectLanguage');
@@ -88,6 +71,10 @@ const AddBlog = () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
+            if(err.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
         });
     }
     useEffect(() => {
@@ -113,6 +100,10 @@ const AddBlog = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
+            if(error.response.status===401){
+                localStorage.clear()
+                navigate(`${cfg.imgURI}/login`)
+            }
             throw error;
         }
     };
@@ -204,6 +195,10 @@ const AddBlog = () => {
                     }).catch(err => {
                         console.log('put err:', err)
                         toast.error('Error Upload  Check Console!')
+                        if(err.response.status===401){
+                            localStorage.clear()
+                            navigate(`${cfg.imgURI}/login`)
+                        }
                     });
                 } else {
                     toast.warn('You have already selected this file for the logo')

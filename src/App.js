@@ -22,6 +22,7 @@ import ListBlog from './components/admin/ListBlog';
 import CreateBlog from './components/admin/CreateBlog';
 import cfg from './Config.json'
 function App() {
+
   return (
     <Fragment>
       <ToastContainer
@@ -36,9 +37,9 @@ function App() {
       />
       <Router>
         <Routes>
-          <Route path={`${cfg.imgURI}/`} exact element={<Login />} />
+          <Route path={`${cfg.imgURI}/login`} exact element={<Login />} />
           <Route path={`${cfg.imgURI}/admin/dashboard/hf`} exact element={<HeaderSAndFooterS />} />
-          <Route path={`${cfg.imgURI}/admin/dashboard/sliders`} exact element={<SliderS />} />
+          <Route path={`${cfg.imgURI}/admin/dashboard/slider`} exact element={<SliderS />} />
           <Route path={`${cfg.imgURI}/admin/dashboard/donate-btn`} exact element={<DonateBTNS />} />
           <Route path={`${cfg.imgURI}/admin/dashboard/skil`} exact element={<LanguageBoxS />} />
           <Route path={`${cfg.imgURI}/admin/dashboard/news`} exact element={<News />} />
@@ -49,7 +50,7 @@ function App() {
           <Route path={`${cfg.imgURI}/admin/dashboard/lc`} exact element={<LabelsAndCategorys />} />
           <Route path={`${cfg.imgURI}/admin/dashboard/change-language-web`} exact element={<ChangeLangS />} />
           <Route path={`${cfg.imgURI}/admin/document`} exact element={<Document />} />
-          <Route path={`${cfg.imgURI}/admin/file-manager`} exact element={<FileManager />} />
+          <Route path={`${cfg.imgURI}/`} exact element={<FileManager />} />
           <Route path={`${cfg.imgURI}/admin/upload-file`} exact element={<UploadFile />} />
           <Route path={`${cfg.imgURI}/admin/create-file`} exact element={<FileUploader />} />
           <Route path={`${cfg.imgURI}/admin/blog`} exact element={<ListBlog />} />
