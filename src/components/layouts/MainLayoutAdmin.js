@@ -22,7 +22,7 @@ const MainLayoutAdmin = (Props) => {
     useEffect(() => {
         if(search.split("?").length===2){
             console.log(search)
-            navigate(search.split("?")[1])
+            navigate(cfg.imgURI+search.split("?")[1])
         }
         const fetchFullName = async () => {
             try {
