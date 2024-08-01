@@ -328,7 +328,7 @@ const ProjectS = () => {
         }, 5000);
     }
     return (<Dashboard title='Project' disc='Edit the project section'>
-        {ONCHANGESAVE ? <div class="card" style={{ left: 500, bottom: 20, boxShadow: "5px 5px 100px gray", width: 700, position: 'fixed', zIndex: 10 }}>
+        {ONCHANGESAVE ? <div class="card" >
             <div class="card-body" style={{ display: "flex", justifyContent: 'space-between' }}><div>Click the Save button to save the information ؟</div>
                 <div>
                     <button onClick={HANDLESAVE} type="button" class="btn btn-outline-success m-2">Save</button>
@@ -337,7 +337,6 @@ const ProjectS = () => {
                         setONCHANGESAVE(false)
                     }} type="button" class="btn btn-outline-danger">Return</button></div></div></div>
             : null}
-
 
         <div class="card">
             <div class="card-body">

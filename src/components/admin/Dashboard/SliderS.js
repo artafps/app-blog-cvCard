@@ -501,7 +501,7 @@ const SliderS = () => {
     }
     return (<Dashboard title='Slider' disc='SliderEdit the home page slider section'>
 
-{ONCHANGESAVE ? <div class="card" style={{ left: 500, bottom: 20, boxShadow: "5px 5px 100px gray", width: 700, position: 'fixed', zIndex: 10 }}>
+{ONCHANGESAVE ? <div class="card" >
             <div class="card-body" style={{ display: "flex", justifyContent: 'space-between' }}><div>Click the Save button to save the information ؟</div>
                 <div>
                     <button onClick={HANDLESAVE} type="button" class="btn btn-outline-success m-2">Save</button>

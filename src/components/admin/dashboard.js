@@ -13,34 +13,34 @@ const Dashboard = (Props) => {
                     <i className="material-icons">menu</i> content
                 </a>
                 <ul class="dropdown-menu list-unstyled content-menu " aria-labelledby="dropdownMenuLink">
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/hf`)}} className={pathname.split('/')[3] === 'hf' ? "active" : null} >Header & Footer</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/donate-btn`)}} className={pathname.split('/')[3] === 'donate-btn' ? "active" : null}  >Donate Button</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/slider`)}} className={pathname.split('/')[3] === 'slider' ? "active" : null}  >Slider</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/skil`)}} className={pathname.split('/')[3] === 'skil' ? "active" : null} >Skil</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/hf`)}} className={pathname.split('/')[4] === 'hf' ? "active" : null} >Header & Footer</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/donate-btn`)}} className={pathname.split('/')[4] === 'donate-btn' ? "active" : null}  >Donate Button</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/slider`)}} className={pathname.split('/')[4] === 'slider' ? "active" : null}  >Slider</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/skil`)}} className={pathname.split('/')[4] === 'skil' ? "active" : null} >Skil</a></li>
                     <li className="divider" />
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/news`)}} className={pathname.split('/')[3] === 'news' ? "active" : null} >News</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/blog`)}} className={pathname.split('/')[3] === 'blog' ? "active" : null} >Blog</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/project`)}} className={pathname.split('/')[3] === 'project' ? "active" : null} >Project</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/myteam`)}} className={pathname.split('/')[3] === 'myteam' ? "active" : null} >My Team</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/plan`)}} className={pathname.split('/')[3] === 'plan' ? "active" : null} >How Work Plans</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/lc`)}} className={pathname.split('/')[3] === 'lc' ? "active" : null} >Labels & Categorys</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/change-language-Web`)}} className={pathname.split('/')[3] === 'change-language-Web' ? "active" : null} >Change Language Web</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/news`)}} className={pathname.split('/')[4] === 'news' ? "active" : null} >News</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/blog`)}} className={pathname.split('/')[4] === 'blog' ? "active" : null} >Blog</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/project`)}} className={pathname.split('/')[4] === 'project' ? "active" : null} >Project</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/myteam`)}} className={pathname.split('/')[4] === 'myteam' ? "active" : null} >My Team</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/plan`)}} className={pathname.split('/')[4] === 'plan' ? "active" : null} >How Work Plans</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/lc`)}} className={pathname.split('/')[4] === 'lc' ? "active" : null} >Labels & Categorys</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/change-language-Web`)}} className={pathname.split('/')[4] === 'change-language-Web' ? "active" : null} >Change Language Web</a></li>
                 </ul>
             </div>
             <div className="content-menu content-menu-right ps">
                 <ul className="list-unstyled">
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/hf`)}} className={pathname.split('/')[3] === 'hf' ? "active" : null} >Header & Footer</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/donate-btn`)}} className={pathname.split('/')[3] === 'donate-btn' ? "active" : null}  >Donate Button</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/slider`)}} className={pathname.split('/')[3] === 'slider' ? "active" : null}  >Slider</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/skil`)}} className={pathname.split('/')[3] === 'skil' ? "active" : null} >Skil</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/hf`)}} className={pathname.split('/')[4] === 'hf' ? "active" : null} >Header & Footer</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/donate-btn`)}} className={pathname.split('/')[4] === 'donate-btn' ? "active" : null}  >Donate Button</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/slider`)}} className={pathname.split('/')[4] === 'slider' ? "active" : null}  >Slider</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/skil`)}} className={pathname.split('/')[4] === 'skil' ? "active" : null} >Skil</a></li>
                     <li className="divider" />
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/news`)}} className={pathname.split('/')[3] === 'news' ? "active" : null} >News</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/blog`)}} className={pathname.split('/')[3] === 'blog' ? "active" : null} >Blog</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/project`)}} className={pathname.split('/')[3] === 'project' ? "active" : null} >Project</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/myteam`)}} className={pathname.split('/')[3] === 'myteam' ? "active" : null} >My Team</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/plan`)}} className={pathname.split('/')[3] === 'plan' ? "active" : null} >How Work Plans</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/lc`)}} className={pathname.split('/')[3] === 'lc' ? "active" : null} >Labels & Categorys</a></li>
-                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/change-language-Web`)}} className={pathname.split('/')[3] === 'change-language-Web' ? "active" : null} >Change Language Web</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/news`)}} className={pathname.split('/')[4] === 'news' ? "active" : null} >News</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/blog`)}} className={pathname.split('/')[4] === 'blog' ? "active" : null} >Blog</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/project`)}} className={pathname.split('/')[4] === 'project' ? "active" : null} >Project</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/myteam`)}} className={pathname.split('/')[4] === 'myteam' ? "active" : null} >My Team</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/plan`)}} className={pathname.split('/')[4] === 'plan' ? "active" : null} >How Work Plans</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/lc`)}} className={pathname.split('/')[4] === 'lc' ? "active" : null} >Labels & Categorys</a></li>
+                    <li><a onClick={() => { navigate(`${cfg.imgURI}/admin/dashboard/change-language-Web`)}} className={pathname.split('/')[4] === 'change-language-Web' ? "active" : null} >Change Language Web</a></li>
                 </ul>
                 <div className="ps__rail-x" style={{ left: 0, bottom: 0 }}><div className="ps__thumb-x" tabIndex={0} style={{ left: 0, width: 0 }} /></div><div className="ps__rail-y" style={{ top: 0, right: 0 }}><div className="ps__thumb-y" tabIndex={0} style={{ top: 0, height: 0 }} /></div></div>
             <div className="content-wrapper">

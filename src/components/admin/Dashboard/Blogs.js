@@ -172,7 +172,7 @@ const  Blogs= () => {
 
 
     return ( <Dashboard title='Blogs' disc='Editing the blog section'>
-  {ONCHANGESAVE ? <div class="card" style={{ left: 500, bottom: 20, boxShadow: "5px 5px 100px gray", width: 700, position: 'fixed', zIndex: 10 }}>
+  {ONCHANGESAVE ? <div class="card" >
             <div class="card-body" style={{ display: "flex", justifyContent: 'space-between' }}><div>Click the Save button to save the information ؟</div>
                 <div>
                     <button onClick={HANDLESAVE} type="button" class="btn btn-outline-success m-2">Save</button>
@@ -181,7 +181,6 @@ const  Blogs= () => {
                         setONCHANGESAVE(false)
                     }} type="button" class="btn btn-outline-danger">Return</button></div></div></div>
             : null}
-
 <div className="card">
             <div className=" widget widget-payment-request"><div className="card-header">
                 <h5 className="card-title">Blog Title</h5>

@@ -210,25 +210,24 @@ const MainLayoutAdmin = (Props) => {
                             Apps
                         </li>
                         {
-                            StatusCreateWeb ? (<li type="button" style={{ cursor: 'pointer' }} className={pathname.split('/')[2] === 'dashboard' ? "active-page" : ''}>
-                                <a onClick={() => navigate(`${cfg.imgURI}/admin/dashboard/hf`)} className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                            StatusCreateWeb ? (<li type="button" style={{ cursor: 'pointer' }} className={pathname.split('/')[3] === 'dashboard' ? "active-page" : ''}>
+                                <a onClick={() => navigate(`${cfg.imgURI}/admin/dashboard/hf`)} className={pathname.split('/')[3] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
                             </li>) : (
-                                <li type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ cursor: 'pointer' }} className={pathname.split('/')[2] === 'dashboard' ? "active-page" : ''}>
-                                    <a className={pathname.split('/')[2] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
+                                <li type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ cursor: 'pointer' }} className={pathname.split('/')[3] === 'dashboard' ? "active-page" : ''}>
+                                    <a className={pathname.split('/')[3] === 'dashboard' ? "active" : ''}><i className="material-icons-two-tone">dashboard</i>Dashboard</a>
                                 </li>
                             )
                         }
-
-                        <li style={{ cursor: 'pointer' }} className={pathname === '/' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/`)} className={pathname === '/' ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === `${cfg.imgURI}/` ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/`)} className={pathname === `${cfg.imgURI}/` ? "active" : ''}><i className="material-icons-two-tone">cloud_queue</i>File Manager</a>
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/create-file' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/create-file`)} className={pathname === '${cfg.imgURI}/admin/create-file' ? "active" : ''}><i className="material-icons-two-tone">
+                        <li style={{ cursor: 'pointer' }} className={pathname === `${cfg.imgURI}/admin/create-file` ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/create-file`)} className={pathname === `${cfg.imgURI}/admin/create-file` ? "active" : ''}><i className="material-icons-two-tone">
                                 note_add
                             </i>Create file</a>
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/upload-file' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/upload-file`)} className={pathname === '${cfg.imgURI}/admin/upload-file' ? "active" : ''}><i className="material-icons-two-tone">
+                        <li style={{ cursor: 'pointer' }} className={pathname === `${cfg.imgURI}/admin/upload-file` ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/upload-file`)} className={pathname === `${cfg.imgURI}/admin/upload-file` ? "active" : ''}><i className="material-icons-two-tone">
                                 upload_file
                             </i>Upload file</a>
                         </li>
@@ -236,19 +235,19 @@ const MainLayoutAdmin = (Props) => {
                             Blog
                         </li>
                         
-                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/blog' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/blog`)} className={pathname === '${cfg.imgURI}/admin/blog' ? "active" : ''}><i className="material-icons-two-tone">receipt_long</i>Blog List</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === `${cfg.imgURI}/admin/blog` ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/blog`)} className={pathname === `${cfg.imgURI}/admin/blog` ? "active" : ''}><i className="material-icons-two-tone">receipt_long</i>Blog List</a>
                         </li>
 
-                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/addblog' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/addblog`)} className={pathname === '${cfg.imgURI}/admin/addblog' ? "active" : ''}><i className="material-icons-two-tone">note_add</i>Add Blog</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === `${cfg.imgURI}/admin/addblog` ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/addblog`)} className={pathname === `${cfg.imgURI}/admin/addblog` ? "active" : ''}><i className="material-icons-two-tone">note_add</i>Add Blog</a>
 
                         </li>
                         <li className="sidebar-title">
                             Other
                         </li>
-                        <li style={{ cursor: 'pointer' }} className={pathname === '${cfg.imgURI}/admin/document' ? "active-page" : ''}>
-                            <a onClick={() => navigate(`${cfg.imgURI}/admin/document`)} className={pathname === '${cfg.imgURI}/admin/document' ? "active" : ''}><i className="material-icons-two-tone">description</i>Document</a>
+                        <li style={{ cursor: 'pointer' }} className={pathname === `${cfg.imgURI}/admin/document` ? "active-page" : ''}>
+                            <a onClick={() => navigate(`${cfg.imgURI}/admin/document`)} className={pathname === `${cfg.imgURI}/admin/document` ? "active" : ''}><i className="material-icons-two-tone">description</i>Document</a>
 
                         </li>
                     </ul>
