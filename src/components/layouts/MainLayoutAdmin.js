@@ -268,47 +268,41 @@ const MainLayoutAdmin = (Props) => {
                             <div className="navbar-nav" id="navbarNav">
                                 <ul className="navbar-nav">
                                     <li className="nav-item" onClick={() => { setOPEN(!OPEN) }}>
-                                        <a className="nav-link hide-sidebar-toggle-button" href="#"><i className="material-icons">first_page</i></a>
+                                        <a className="nav-link hide-sidebar-toggle-button" ><i className="material-icons">first_page</i></a>
                                     </li>
                                     {localStorage.getItem('theme') === 'dark' ? <li className="nav-item" onClick={handleSunMode} >
-                                        <a className="nav-link hide-sidebar-toggle-button" href="#"><i className="material-icons-two-tone">light_mode</i></a>
+                                        <a className="nav-link hide-sidebar-toggle-button" ><i className="material-icons-two-tone">light_mode</i></a>
                                     </li>
                                         : <li className="nav-item" onClick={handleDarkMode} >
-                                            <a className="nav-link hide-sidebar-toggle-button" href="#"><i className="material-icons-two-tone">dark_mode</i></a>
+                                            <a className="nav-link hide-sidebar-toggle-button" ><i className="material-icons-two-tone">dark_mode</i></a>
                                         </li>}
 
                                     <li className="nav-item dropdown hidden-on-mobile">
 
-                                        <a className="nav-link dropdown-toggle" href="#" id="exploreDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a className="nav-link dropdown-toggle"  id="exploreDropdownLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i className="material-icons-outlined">explore</i>
                                         </a>
                                         <ul className="dropdown-menu dropdown-lg large-items-menu" aria-labelledby="exploreDropdownLink">
                                             <li>
-                                                <h6 className="dropdown-header">Repositories</h6>
+                                                <h6 className="dropdown-header">Change Repo And Again Login</h6>
                                             </li>
-                                            <li>
+                                            <li onClick={() =>{
+                                                localStorage.clear()
+                                                navigate(`${cfg.imgURI}/login`)
+                                            }}>
                                                 <a className="dropdown-item" href="#">
                                                     <h5 className="dropdown-item-title">
-                                                        Neptune iOS
-                                                        <span className="badge badge-warning">1.0.2</span>
-                                                        <span className="hidden-helper-text">switch<i className="material-icons">keyboard_arrow_right</i></span>
+                                                        Logout For Again Login
+                                                        <span className="badge badge-danger">Logout</span>
+                                                        <span className="hidden-helper-text">Switch<i className="material-icons">keyboard_arrow_right</i></span>
                                                     </h5>
-                                                    <span className="dropdown-item-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+                                                    <span className="dropdown-item-description">You can leave this section    </span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a className="dropdown-item" href="#">
-                                                    <h5 className="dropdown-item-title">
-                                                        Neptune Android
-                                                        <span className="badge badge-info">dev</span>
-                                                        <span className="hidden-helper-text">switch<i className="material-icons">keyboard_arrow_right</i></span>
-                                                    </h5>
-                                                    <span className="dropdown-item-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-                                                </a>
-                                            </li>
+{/*                                             
                                             <li className="dropdown-btn-item d-grid">
                                                 <button className="btn btn-primary">Create new repository</button>
-                                            </li>
+                                            </li> */}
                                         </ul>
                                     </li>
 
