@@ -8,6 +8,7 @@ import { fileToBase64 } from "../../../utils/fileToBase64";
 import { getFileContent } from "../../../utils/getFileGit";
 import cfg from '../../../Config.json'
 import { useNavigate } from "react-router";
+import { generateRandomString } from "../../../utils/random36";
 const HeaderSAndFooterS = () => {
     const navigate = useNavigate()
 
@@ -269,13 +270,13 @@ const HeaderSAndFooterS = () => {
         const data2 = await getFileContent(events)
         var d = localStorage.getItem('DATAGITBACK')
         if (d === null) {
-            const newDataSocial = DATAGITARRY.Header.Social.filter(item => item.Icone !== id)
+            const newDataSocial = DATAGITARRY.Header.Social.filter(item => item.Id !== id)
             DATAGITARRY.Header.Social = newDataSocial
             localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
             HANDLESAVE()
         } else {
             let Data = JSON.parse(d)
-            const newDataSocial = Data.Header.Social.filter(item => item.Icone !== id)
+            const newDataSocial = Data.Header.Social.filter(item => item.Id !== id)
             Data.Header.Social = newDataSocial
             setSOCIALMEDIALISTHEADER(Data.Header.Social)
             localStorage.setItem('DATAGITBACK', JSON.stringify(Data))
@@ -290,13 +291,13 @@ const HeaderSAndFooterS = () => {
         const data2 = await getFileContent(events)
         var d = localStorage.getItem('DATAGITBACK')
         if (d === null) {
-            const newDataSocial = DATAGITARRY.Footer.Social.filter(item => item.Icone !== id)
+            const newDataSocial = DATAGITARRY.Footer.Social.filter(item => item.Id !== id)
             DATAGITARRY.Footer.Social = newDataSocial
             localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
             HANDLESAVE()
         } else {
             let Data = JSON.parse(d)
-            const newDataSocial = Data.Footer.Social.filter(item => item.Icone !== id)
+            const newDataSocial = Data.Footer.Social.filter(item => item.Id !== id)
             Data.Footer.Social = newDataSocial
             setSOCIALMEDIALISTFOOTER(Data.Footer.Social)
             localStorage.setItem('DATAGITBACK', JSON.stringify(Data))
@@ -335,7 +336,7 @@ const HeaderSAndFooterS = () => {
                         toast.success('File Uploaded successfully!')
                         var d = localStorage.getItem('DATAGITBACK')
                         const item = {
-                            "id": generateRandomString(36),
+                            "Id": generateRandomString(36),
                             "Dark": SOCIALDARKMODEHEADER,
                             "Icone": icon,
                             "Link": SOCIALMEDIALINKHEADER
@@ -377,7 +378,7 @@ const HeaderSAndFooterS = () => {
                 toast.success('File Uploaded successfully!')
                 var d = localStorage.getItem('DATAGITBACK')
                 const item = {
-                    "id": generateRandomString(36),
+                    "Id": generateRandomString(36),
                     "Dark": SOCIALDARKMODEHEADER,
                     "Icone": '',
                     "Link": SOCIALMEDIALINKHEADER
@@ -507,7 +508,7 @@ const HeaderSAndFooterS = () => {
                         toast.success('File Uploaded successfully!')
                         var d = localStorage.getItem('DATAGITBACK')
                         const item = {
-                            "id": generateRandomString(36),
+                            "Id": generateRandomString(36),
                             "Dark": SOCIALDARKMODEFOOTER,
                             "Icone": icon,
                             "Link": SOCIALMEDIALINKFOOTER
@@ -549,7 +550,7 @@ const HeaderSAndFooterS = () => {
                 toast.success('File Uploaded successfully!')
                 var d = localStorage.getItem('DATAGITBACK')
                 const item = {
-                    "id": generateRandomString(36),
+                    "Id": generateRandomString(36),
                     "Dark": SOCIALDARKMODEFOOTER,
                     "Icone": '',
                     "Link": SOCIALMEDIALINKFOOTER
@@ -1040,7 +1041,7 @@ const HeaderSAndFooterS = () => {
                                             <span className="widget-payment-request-author-name">{`https://${item.Link}`}</span>
                                             <span className="widget-payment-request-author-about">{item.Icone.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`)[1]}</span>
                                         </div>
-                                        <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteSOCIAL_Header(item.Icone) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
+                                        <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteSOCIAL_Header(item.Id) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
 
                                     </div>
                                 )
@@ -1205,7 +1206,7 @@ const HeaderSAndFooterS = () => {
                                             <span className="widget-payment-request-author-name">{`https://${item.Link}`}</span>
                                             <span className="widget-payment-request-author-about">{item.Icone.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`)[1]}</span>
                                         </div>
-                                        <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteSOCIAL_Footer(item.Icone) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
+                                        <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteSOCIAL_Footer(item.Id) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
                                     </div>
                                 )
                             })
