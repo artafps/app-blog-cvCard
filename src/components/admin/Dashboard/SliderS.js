@@ -311,11 +311,11 @@ const SliderS = () => {
                     toast.success('File Uploaded successfully!')
                     let Data = localStorage.getItem('DATAGITBACK')
                     if (Data === null) {
-                        DATAGITARRY.Slider.ImageURI1 = String(icon)
+                        DATAGITARRY.Slider.ImageURI2 = String(icon)
                         localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
                     } else {
                         const newData = JSON.parse(Data)
-                        newData.Slider.ImageURI1 = String(icon)
+                        newData.Slider.ImageURI2 = String(icon)
                         localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
                     }
                     setTimeout(() => {
