@@ -14,7 +14,7 @@ const HeaderSAndFooterS = () => {
     ///File name
     const Lang = localStorage.getItem('selectLanguage');
 
-    const configNameFile =`Config-Web-${Lang}.json`
+    const configNameFile = `Config-Web-${Lang}.json`
     // state get
     // prograsces 
     const [Progress, setProgress] = useState(0);
@@ -82,10 +82,7 @@ const HeaderSAndFooterS = () => {
 
     };
     const handleChange2 = (event) => {
-        if (event.target.files[0].size > 2500) {
-            toast.error("Size file 2500 50px*50px.")
-            return
-        }
+       
         if (event.target.files[0].type.split('/')[1] === 'img' || event.target.files[0].type.split('/')[1] === 'jpg' || event.target.files[0].type.split('/')[1] === 'jpeg' || event.target.files[0].type.split('/')[1] === 'png') {
             setFile2(event.target.files[0]);
             input4.current.value = ''
@@ -97,10 +94,7 @@ const HeaderSAndFooterS = () => {
 
     };
     const handleChange4 = (event) => {
-        if (event.target.files[0].size > 2500) {
-            toast.error("Size file 2500 50px*50px.")
-            return
-        }
+       
         if (event.target.files[0].type.split('/')[1] === 'img' || event.target.files[0].type.split('/')[1] === 'jpg' || event.target.files[0].type.split('/')[1] === 'jpeg' || event.target.files[0].type.split('/')[1] === 'png') {
             setFile4(event.target.files[0]);
             input2.current.value = ''
@@ -120,7 +114,7 @@ const HeaderSAndFooterS = () => {
             return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
         } catch (error) {
             console.error('Error fetching file content:', error);
-            if(error.response.status===401){
+            if (error.response.status === 401) {
                 localStorage.clear()
                 navigate(`${cfg.imgURI}/login`)
             }
@@ -189,7 +183,7 @@ const HeaderSAndFooterS = () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
-            if(err.response.status===401){
+            if (err.response.status === 401) {
                 localStorage.clear()
                 navigate(`${cfg.imgURI}/login`)
             }
@@ -215,7 +209,7 @@ const HeaderSAndFooterS = () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
-            if(error.response.status===401){
+            if (error.response.status === 401) {
                 localStorage.clear()
                 navigate(`${cfg.imgURI}/login`)
             }
@@ -313,79 +307,107 @@ const HeaderSAndFooterS = () => {
         }, 5000);
     }
     const handleChangeSOCIALHEADER = async () => {
-        if (!file2 && SOCIALMEDIALINKHEADER.trim() === '') {
+        if (SOCIALMEDIALINKHEADER.trim() === '') {
             // check items get user
             toast.error('Hello, please fill in the link section and upload the icon file to complete the operation')
         }
         try {
+            if (file2) {
+                var events = `https://api.github.com/repos/${OwnerName}/${RepoName}/contents/social/jpg/icon-f-${file2.name}`
+                var icon = `https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/social/jpg/icon-f-${file2.name}`
+                var data = await getFileContent(events)
+                //and uploaded file 
 
-            var events = `https://api.github.com/repos/${OwnerName}/${RepoName}/contents/social/jpg/icon-f-${file2.name}`
-            var icon = `https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/social/jpg/icon-f-${file2.name}`
-            var data = await getFileContent(events)
-            //and uploaded file 
-
-            if (!data) {
-                setProgress3(10)
-                toast.info('The upload process may take up to a minute due to Github security reasons.\n  Please do not leave the page')
-                const fileContentBase64 = await fileToBase64(file2);
-                await axios.put(events, {
-                    message: 'Upload file' + file2.name,
-                    content: fileContentBase64,
-                    branch: 'main', // Change the branch name if needed
-                }, {
-                    headers: {
-                        Authorization: `token ${accessToken}`,
-                    },
-                }).then(res => {
-                    setProgress3(30)
-                    toast.success('File Uploaded successfully!')
-                    var d = localStorage.getItem('DATAGITBACK')
-                    const item = {
-                        "Dark": SOCIALDARKMODEHEADER,
-                        "Icone": icon,
-                        "Link": SOCIALMEDIALINKHEADER
-                    }
-                    if (d === null) {
-                        console.log("1")
-                        DATAGITARRY.Header.Social = [item]
-                        localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
-                    } else {
-                        let Data = JSON.parse(d)
-                        const socialHeader = Data.Header.Social
-                        socialHeader.push(item)
-                        setSOCIALMEDIALISTHEADER(socialHeader)
-                        const newData = Data
-                        newData.Header.Social = socialHeader
-                        localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
-                    }
-                    setTimeout(() => {
-                        setProgress3(100)
-                        setFile2(null)
-                        setSOCIALDARKMODEHEADER(false)
-                        setSOCIALMEDIALINKHEADER('')
-                        HANDLESAVE()
-                        setProgress3(0)
-                    }, 5000);
-                }).catch(err => {
-                    console.log('put err:', err)
-                    toast.error('Error Upload  Check Console!')
-                    if(err.response.status===401){
-                        localStorage.clear()
-                        navigate(`${cfg.imgURI}/login`)
-                    }
-                });
+                if (!data) {
+                    setProgress3(10)
+                    toast.info('The upload process may take up to a minute due to Github security reasons.\n  Please do not leave the page')
+                    const fileContentBase64 = await fileToBase64(file2);
+                    await axios.put(events, {
+                        message: 'Upload file' + file2.name,
+                        content: fileContentBase64,
+                        branch: 'main', // Change the branch name if needed
+                    }, {
+                        headers: {
+                            Authorization: `token ${accessToken}`,
+                        },
+                    }).then(res => {
+                        setProgress3(30)
+                        toast.success('File Uploaded successfully!')
+                        var d = localStorage.getItem('DATAGITBACK')
+                        const item = {
+                            "id": generateRandomString(36),
+                            "Dark": SOCIALDARKMODEHEADER,
+                            "Icone": icon,
+                            "Link": SOCIALMEDIALINKHEADER
+                        }
+                        if (d === null) {
+                            console.log("1")
+                            DATAGITARRY.Header.Social = [item]
+                            localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+                        } else {
+                            let Data = JSON.parse(d)
+                            const socialHeader = Data.Header.Social
+                            socialHeader.push(item)
+                            setSOCIALMEDIALISTHEADER(socialHeader)
+                            const newData = Data
+                            newData.Header.Social = socialHeader
+                            localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+                        }
+                        setTimeout(() => {
+                            setProgress3(100)
+                            setFile2(null)
+                            setSOCIALDARKMODEHEADER(false)
+                            setSOCIALMEDIALINKHEADER('')
+                            HANDLESAVE()
+                            setProgress3(0)
+                        }, 5000);
+                    }).catch(err => {
+                        console.log('put err:', err)
+                        toast.error('Error Upload  Check Console!')
+                        if (err.response.status === 401) {
+                            localStorage.clear()
+                            navigate(`${cfg.imgURI}/login`)
+                        }
+                    });
+                } else {
+                    toast.warn('You have already selected this file for the logo')
+                }
             } else {
-                toast.warn('You have already selected this file for the logo')
+                setProgress3(30)
+                toast.success('File Uploaded successfully!')
+                var d = localStorage.getItem('DATAGITBACK')
+                const item = {
+                    "id": generateRandomString(36),
+                    "Dark": SOCIALDARKMODEHEADER,
+                    "Icone": '',
+                    "Link": SOCIALMEDIALINKHEADER
+                }
+                if (d === null) {
+                    console.log("1")
+                    DATAGITARRY.Header.Social = [item]
+                    localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+                } else {
+                    let Data = JSON.parse(d)
+                    const socialHeader = Data.Header.Social
+                    socialHeader.push(item)
+                    setSOCIALMEDIALISTHEADER(socialHeader)
+                    const newData = Data
+                    newData.Header.Social = socialHeader
+                    localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+                }
+                setTimeout(() => {
+                    setProgress3(100)
+                    setFile2(null)
+                    setSOCIALDARKMODEHEADER(false)
+                    setSOCIALMEDIALINKHEADER('')
+                    HANDLESAVE()
+                    setProgress3(0)
+                }, 5000);
             }
         } catch (error) {
             toast.error('Error uploading file! Check The Console')
             console.error('Error uploading file:', error);
         }
-
-
-
-
-
     }
 
     const handleChangeSTATUSFOOTER = (events) => {
@@ -457,69 +479,102 @@ const HeaderSAndFooterS = () => {
 
     const handleChangeSOCIALFOOTER = async () => {
 
-        if (!file4 && SOCIALMEDIALINKFOOTER === '') {
+        if (SOCIALMEDIALINKFOOTER === '') {
             // check items get user
             toast.error('Hello, please fill in the link section and upload the icon file to complete the operation')
         }
         try {
+            if (file4) {
+                var events = `https://api.github.com/repos/${OwnerName}/${RepoName}/contents/social/jpg/icon-f-${file4.name}`
+                var icon = `https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/social/jpg/icon-f-${file4.name}`
+                var data = await getFileContent(events)
+                //and uploaded file 
 
-            var events = `https://api.github.com/repos/${OwnerName}/${RepoName}/contents/social/jpg/icon-f-${file4.name}`
-            var icon = `https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/social/jpg/icon-f-${file4.name}`
-            var data = await getFileContent(events)
-            //and uploaded file 
-
-            if (!data) {
-                setProgress3(10)
-                toast.info('The upload process may take up to a minute due to Github security reasons.\n  Please do not leave the page')
-                const fileContentBase64 = await fileToBase64(file4);
-                await axios.put(events, {
-                    message: 'Upload file' + file4.name,
-                    content: fileContentBase64,
-                    branch: 'main', // Change the branch name if needed
-                }, {
-                    headers: {
-                        Authorization: `token ${accessToken}`,
-                    },
-                }).then(res => {
-                    setProgress3(30)
-                    toast.success('File Uploaded successfully!')
-                    var d = localStorage.getItem('DATAGITBACK')
-                    const item = {
-                        "Dark": SOCIALDARKMODEFOOTER,
-                        "Icone": icon,
-                        "Link": SOCIALMEDIALINKFOOTER
-                    }
-                    if (d === null) {
-                        console.log("1")
-                        DATAGITARRY.Footer.Social = [item]
-                        localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
-                    } else {
-                        let Data = JSON.parse(d)
-                        const socialFooter = Data.Footer.Social
-                        socialFooter.push(item)
-                        setSOCIALMEDIALISTFOOTER(socialFooter)
-                        const newData = Data
-                        newData.Header.Social = socialFooter
-                        localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
-                    }
-                    setTimeout(() => {
-                        setProgress4(100)
-                        setFile3(null)
-                        setSOCIALDARKMODEFOOTER(false)
-                        setSOCIALMEDIALINKFOOTER('')
-                        HANDLESAVE()
-                        setProgress4(0)
-                    }, 5000);
-                }).catch(err => {
-                    console.log('put err:', err)
-                    toast.error('Error Upload  Check Console!')
-                    if(err.response.status===401){
-                        localStorage.clear()
-                        navigate(`${cfg.imgURI}/login`)
-                    }
-                });
+                if (!data) {
+                    setProgress3(10)
+                    toast.info('The upload process may take up to a minute due to Github security reasons.\n  Please do not leave the page')
+                    const fileContentBase64 = await fileToBase64(file4);
+                    await axios.put(events, {
+                        message: 'Upload file' + file4.name,
+                        content: fileContentBase64,
+                        branch: 'main', // Change the branch name if needed
+                    }, {
+                        headers: {
+                            Authorization: `token ${accessToken}`,
+                        },
+                    }).then(res => {
+                        setProgress3(30)
+                        toast.success('File Uploaded successfully!')
+                        var d = localStorage.getItem('DATAGITBACK')
+                        const item = {
+                            "id": generateRandomString(36),
+                            "Dark": SOCIALDARKMODEFOOTER,
+                            "Icone": icon,
+                            "Link": SOCIALMEDIALINKFOOTER
+                        }
+                        if (d === null) {
+                            console.log("1")
+                            DATAGITARRY.Footer.Social = [item]
+                            localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+                        } else {
+                            let Data = JSON.parse(d)
+                            const socialFooter = Data.Footer.Social
+                            socialFooter.push(item)
+                            setSOCIALMEDIALISTFOOTER(socialFooter)
+                            const newData = Data
+                            newData.Header.Social = socialFooter
+                            localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+                        }
+                        setTimeout(() => {
+                            setProgress4(100)
+                            setFile3(null)
+                            setSOCIALDARKMODEFOOTER(false)
+                            setSOCIALMEDIALINKFOOTER('')
+                            HANDLESAVE()
+                            setProgress4(0)
+                        }, 5000);
+                    }).catch(err => {
+                        console.log('put err:', err)
+                        toast.error('Error Upload  Check Console!')
+                        if (err.response.status === 401) {
+                            localStorage.clear()
+                            navigate(`${cfg.imgURI}/login`)
+                        }
+                    });
+                } else {
+                    toast.warn('You have already selected this file for the logo')
+                }
             } else {
-                toast.warn('You have already selected this file for the logo')
+                setProgress3(30)
+                toast.success('File Uploaded successfully!')
+                var d = localStorage.getItem('DATAGITBACK')
+                const item = {
+                    "id": generateRandomString(36),
+                    "Dark": SOCIALDARKMODEFOOTER,
+                    "Icone": '',
+                    "Link": SOCIALMEDIALINKFOOTER
+                }
+                if (d === null) {
+                    console.log("1")
+                    DATAGITARRY.Footer.Social = [item]
+                    localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+                } else {
+                    let Data = JSON.parse(d)
+                    const socialFooter = Data.Footer.Social
+                    socialFooter.push(item)
+                    setSOCIALMEDIALISTFOOTER(socialFooter)
+                    const newData = Data
+                    newData.Header.Social = socialFooter
+                    localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+                }
+                setTimeout(() => {
+                    setProgress4(100)
+                    setFile3(null)
+                    setSOCIALDARKMODEFOOTER(false)
+                    setSOCIALMEDIALINKFOOTER('')
+                    HANDLESAVE()
+                    setProgress4(0)
+                }, 5000);
             }
         } catch (error) {
             toast.error('Error uploading file! Check The Console')
@@ -709,7 +764,7 @@ const HeaderSAndFooterS = () => {
             toast.success('File Deleted Successfully!')
         }).catch(err => {
             console.error("Error deleting file:", err);
-            if(err.response.status===401){
+            if (err.response.status === 401) {
                 localStorage.clear()
                 navigate(`${cfg.imgURI}/login`)
             }
@@ -759,7 +814,7 @@ const HeaderSAndFooterS = () => {
                 }).catch(err => {
                     console.log('put err:', err)
                     toast.error('Error Upload  Check Console!')
-                    if(err.response.status===401){
+                    if (err.response.status === 401) {
                         localStorage.clear()
                         navigate(`${cfg.imgURI}/login`)
                     }
@@ -842,7 +897,7 @@ const HeaderSAndFooterS = () => {
                 }).catch(err => {
                     console.log('put err:', err)
                     toast.error('Error Upload  Check Console!')
-                    if(err.response.status===401){
+                    if (err.response.status === 401) {
                         localStorage.clear()
                         navigate(`${cfg.imgURI}/login`)
                     }
@@ -1253,7 +1308,7 @@ const HeaderSAndFooterS = () => {
 
                     <br />
                     <label class="form-check-label" >Btn Text Community  </label>
-                    <input value={BtnTextCommunity } onChange={e => handleChangeBtnTextCommunity(e.target.value)} type="text" class="form-control" placeholder="Name PowerBy " aria-label="Username" aria-describedby="basic-addon1" />
+                    <input value={BtnTextCommunity} onChange={e => handleChangeBtnTextCommunity(e.target.value)} type="text" class="form-control" placeholder="Name PowerBy " aria-label="Username" aria-describedby="basic-addon1" />
 
                     <br />
                     <label class="form-check-label" for="flexSwitchCheckDefault234"> Link Community :</label>

@@ -64,10 +64,7 @@ const DonateBTNS = () => {
 
 
     const handleChange = (event) => {
-        if (event.target.files[0].size > 2500) {
-            toast.error("Size file 2500 50px*50px.")
-            return
-        }
+        
         if (event.target.files[0].type.split('/')[1] === 'img' || event.target.files[0].type.split('/')[1] === 'jpg' || event.target.files[0].type.split('/')[1] === 'jpeg' || event.target.files[0].type.split('/')[1] === 'png') {
             setFile(event.target.files[0]);
             input.current.value = ''
