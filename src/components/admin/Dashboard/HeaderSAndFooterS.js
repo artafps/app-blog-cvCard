@@ -1055,11 +1055,9 @@ const HeaderSAndFooterS = () => {
                         </div>
 
 
-                        <div class="input-group mb-3">
-                            <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
+                        <label htmlFor="fileName2">Link Social</label>
                             <input value={SOCIALMEDIALINKHEADER} onChange={(e) => { setSOCIALMEDIALINKHEADER(e.target.value) }} type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
                             <br />
-                        </div>
                         {file2 !== null ? <div class="alert alert-custom" role="alert">
                             <div class="alert-content">
                                 <div>
@@ -1203,7 +1201,7 @@ const HeaderSAndFooterS = () => {
                                             <img src={item.Icone} alt />
                                         </div>
                                         <div className="widget-payment-request-author-info">
-                                            <span className="widget-payment-request-author-name">{`https://${item.Link}`}</span>
+                                            <span className="widget-payment-request-author-name">{`${item.Link}`}</span>
                                             <span className="widget-payment-request-author-about">{item.Icone.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`)[1]}</span>
                                         </div>
                                         <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteSOCIAL_Footer(item.Id) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
@@ -1219,11 +1217,9 @@ const HeaderSAndFooterS = () => {
                         </div>
 
                         <label class="form-check-label" > Link Social Media </label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
+                     
                             <input value={SOCIALMEDIALINKFOOTER} onChange={(e) => { setSOCIALMEDIALINKFOOTER(e.target.value) }} type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
                             <br />
-                        </div>
 
                         {file4 !== null ? <div class="alert alert-custom" role="alert">
                             <div class="alert-content">
@@ -1286,10 +1282,8 @@ const HeaderSAndFooterS = () => {
 
                     <br />
                     <label class="form-check-label" for="flexSwitchCheckDefault234"> Link PowerBy :</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon3">https://</span>
+                    
                         <input value={POWERBYLINK} onChange={(e) => { handleChangePOWERBYLINK(e.target.value) }} type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
-                    </div>
 
                 </div>
             </div>
@@ -1313,10 +1307,8 @@ const HeaderSAndFooterS = () => {
 
                     <br />
                     <label class="form-check-label" for="flexSwitchCheckDefault234"> Link Community :</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon3">https://</span>
+                
                         <input value={LinkBtnCommunity} onChange={(e) => { handleChangeLinkBtnCommunity(e.target.value) }} type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
-                    </div>
 
                 </div>
             </div>

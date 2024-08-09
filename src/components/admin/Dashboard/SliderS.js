@@ -568,10 +568,8 @@ const SliderS = () => {
                     <input value={BTNTEXT} onChange={e => handleChangeBTNTEXTSLIDER(e.target.value)} type="text" class="form-control " placeholder="Btn Text" aria-label="Username" aria-describedby="basic-addon1" />
                     <br/>
                     <label class="form-check-label" >Btn Link </label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon3">https://</span>
+                    
                         <input value={LINKBTN} onChange={e => handleChangeBTNLINKSLIDER(e.target.value)} type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
-                    </div>
             </div>
         </div>
         <div class="card">
@@ -587,10 +585,8 @@ const SliderS = () => {
                 <input value={TEXTCIRCLE} onChange={e => handleChangeTEXTCIRCLESLIDER(e.target.value)} type="text" class="form-control " placeholder="Circle Text" aria-label="Username" aria-describedby="basic-addon1" />
                 <br/>
                 <label class="form-check-label" >Circle Link </label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon3">https://</span>
+                
                     <input value={LINKCIRCLE} onChange={e => handleChangeLINKCIRCLESLIDER(e.target.value)} type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
-                </div>
             </div>
         </div>
 

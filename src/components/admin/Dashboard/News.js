@@ -431,11 +431,10 @@ const News = () => {
                             <br />
                         </div>
                         <label class="form-check-label" >Btn Link</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
+                      
                             <input value={LinkBtn} onChange={(e) => { setLinkBtn(e.target.value) }} type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
 
-                        </div>
+                        
                         <br />
                     </div>
                     {File !== null ? <div class="alert alert-custom" role="alert">

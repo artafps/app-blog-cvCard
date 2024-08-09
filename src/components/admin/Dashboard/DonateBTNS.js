@@ -425,11 +425,9 @@ const DonateBTNS = () => {
                             <br />
                         </div>
                         <label class="form-check-label" >Donate Link</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text input-group-text" id="custom-addon3">https://</span>
+                        
                             <input value={LinkI} onChange={(e) => { setLinkI(e.target.value) }} type="text" className="form-control form-control" id="custom-url" aria-describedby="custom-addon3" />
 
-                        </div>
                         <br />
                     </div>
                     {File !== null ? <div class="alert alert-custom" role="alert">
