@@ -371,10 +371,10 @@ const ProjectS = () => {
         <div className="card">
             <div className=" widget widget-payment-request">
                 <div className="card-header">
-                    <h5 className="card-title">Social Media Header</h5>
+                    <h5 className="card-title">Projects Header</h5>
                 </div>
                 <div class="form-check form-switch">
-                    <label class="form-check-label" > Add your social media. </label>
+                    <label class="form-check-label" > Add your Projects. </label>
                 </div>
                 <div className="card-body">
                     <div className="widget-payment-request-container">
@@ -469,7 +469,7 @@ const ProjectS = () => {
 
 
                     <div className="widget-payment-request-actions m-t-md d-flex">
-                        <a onClick={handleChangePROJECTITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Social Media Link</a>
+                        <a onClick={handleChangePROJECTITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Projects</a>
                     </div>
                 </div>
             </div>

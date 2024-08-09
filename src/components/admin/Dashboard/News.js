@@ -374,10 +374,10 @@ const News = () => {
         <div className="card">
             <div className=" widget widget-payment-request">
                 <div className="card-header">
-                    <h5 className="card-title">Social Media Header</h5>
+                    <h5 className="card-title">News Header</h5>
                 </div>
                 <div class="form-check form-switch">
-                    <label class="form-check-label" > Add your social media. </label>
+                    <label class="form-check-label" > Add your News. </label>
                 </div>
                 <div className="card-body">
                     <div className="widget-payment-request-container">
@@ -440,7 +440,7 @@ const News = () => {
                     {File !== null ? <div class="alert alert-custom" role="alert">
                         <div class="alert-content">
                             <div>
-                                <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/social/${File.name}`}</label>
+                                <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/news/jpg/NEWS-f-${File.name}`}</label>
                             </div>
                             <br />
                             <span class="alert-title">{File.name}</span>
@@ -478,7 +478,7 @@ const News = () => {
 
 
                     <div className="widget-payment-request-actions m-t-md d-flex">
-                        <a onClick={handleChangeNEWSITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Social Media Link</a>
+                        <a onClick={handleChangeNEWSITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add News </a>
                     </div>
                 </div>
             </div>

@@ -978,7 +978,7 @@ const HeaderSAndFooterS = () => {
                 {file !== null ? <div class="alert alert-custom" role="alert">
                     <div class="alert-content">
                         <div>
-                            <label htmlFor="fileName">{`https://github.com/${OwnerName}/${RepoName}/image/logo/logoHEADER-f-${file.name}`}</label>
+                            <label htmlFor="fileName">{`https://github.com/${OwnerName}/${RepoName}/logo/logoHEADER-f-${file.name}`}</label>
                         </div>
                         <br />
                         <span class="alert-title">{file.name}</span>
@@ -1038,7 +1038,7 @@ const HeaderSAndFooterS = () => {
                                             <img src={item.Icone} alt />
                                         </div>
                                         <div className="widget-payment-request-author-info">
-                                            <span className="widget-payment-request-author-name">{`https://${item.Link}`}</span>
+                                            <span className="widget-payment-request-author-name">{`${item.Link}`}</span>
                                             <span className="widget-payment-request-author-about">{item.Icone.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`)[1]}</span>
                                         </div>
                                         <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteSOCIAL_Header(item.Id) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
@@ -1061,7 +1061,7 @@ const HeaderSAndFooterS = () => {
                         {file2 !== null ? <div class="alert alert-custom" role="alert">
                             <div class="alert-content">
                                 <div>
-                                    <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/social/logoFooter-f-${file2.name}`}</label>
+                                    <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/social/logoFooter-f-${file2.name}`}</label>
                                 </div>
                                 <br />
                                 <span class="alert-title">{file2.name}</span>
@@ -1143,7 +1143,7 @@ const HeaderSAndFooterS = () => {
                 {file3 !== null ? <div class="alert alert-custom" role="alert">
                     <div class="alert-content">
                         <div>
-                            <label htmlFor="fileName">{`https://github.com/${OwnerName}/${RepoName}/image/logo/${file3.name}`}</label>
+                            <label htmlFor="fileName">{`https://github.com/${OwnerName}/${RepoName}/logo/${file3.name}`}</label>
                         </div>
                         <br />
                         <span class="alert-title">{file3.name}</span>
@@ -1224,7 +1224,7 @@ const HeaderSAndFooterS = () => {
                         {file4 !== null ? <div class="alert alert-custom" role="alert">
                             <div class="alert-content">
                                 <div>
-                                    <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/social/${file4.name}`}</label>
+                                    <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/social/${file4.name}`}</label>
                                 </div>
                                 <br />
                                 <span class="alert-title">{file4.name}</span>

@@ -391,10 +391,10 @@ const DonateBTNS = () => {
         <div className="card">
             <div className=" widget widget-payment-request">
                 <div className="card-header">
-                    <h5 className="card-title">Social Media Header</h5>
+                    <h5 className="card-title">Donate Links</h5>
                 </div>
                 <div class="form-check form-switch">
-                    <label class="form-check-label" > Add your social media. </label>
+                    <label class="form-check-label" > Add your Donate Links. </label>
                 </div>
                 <div className="card-body">
                     <div className="widget-payment-request-container">
@@ -408,7 +408,7 @@ const DonateBTNS = () => {
                                         </div>
                                         <div className="widget-payment-request-author-info">
                                             <span className="widget-payment-request-author-name">{item.Text}</span>
-                                            <span className="widget-payment-request-author-about">{item.Icone.split(`https://raw.githubusercontent.com/${OwnerName}/${RepoName}/main/`).length}</span>
+                                            <span className="widget-payment-request-author-about">{item.Link}</span>
                                         </div>
                                         <span class="widget-payment-request-product-price"><button onClick={() => { handleDeleteITEM_DONATE(item.Icone) }} type="button" class="btn btn-danger"><i class="material-icons">delete_outline</i>Remove</button>     </span>
 
@@ -433,7 +433,7 @@ const DonateBTNS = () => {
                     {File !== null ? <div class="alert alert-custom" role="alert">
                         <div class="alert-content">
                             <div>
-                                <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/social/${File.name}`}</label>
+                                <label htmlFor="fileName2">{`https://github.com/${OwnerName}/${RepoName}/image/donate/jpg/Dicone-f-${File.name}`}</label>
                             </div>
                             <br />
                             <span class="alert-title">{File.name}</span>
@@ -471,7 +471,7 @@ const DonateBTNS = () => {
 
 
                     <div className="widget-payment-request-actions m-t-md d-flex">
-                        <a onClick={handleChangeDONATEITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Social Media Link</a>
+                        <a onClick={handleChangeDONATEITEMS} className="btn btn-primary flex-grow-1 m-l-xxs">Add Donate Link</a>
                     </div>
                 </div>
             </div>
