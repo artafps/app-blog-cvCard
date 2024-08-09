@@ -262,7 +262,7 @@ const LanguageBoxS = () => {
                         socialHeader.push(item)
                         setSKILSARR(socialHeader)
                         const newData = Data
-                        newData.Donate.Items = socialHeader
+                        DATAGITARRY.Skils.Arr = socialHeader
                         localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
                     }
                     setTimeout(() => {
