@@ -169,7 +169,7 @@ const AddBlog = () => {
                             "Content": fileContent,
                             "Lable": Lable,
                             "Category": Category,
-
+                            "Date":new Date(),
                         }
                         if (d === null) {
                             DATAGITARRY.Blog.Arr = [item]

@@ -199,14 +199,14 @@ const LabelsAndCategorys = () => {
     }
 
     const handleChangeCategory = async () => {
-        if ( Title.trim() === '' ) {
+        if ( Title2.trim() === '' ) {
             toast.error('Hello, please fill in the link section and upload the icon file to complete the operation')
         }
         try {
 
             toast.success('File Uploaded successfully!')
             var d = localStorage.getItem('DATAGITBACK')
-            const item = Title
+            const item = Title2
             if (d === null) {
                 DATAGITARRY.Category = [item]
                 localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
@@ -340,9 +340,6 @@ const LabelsAndCategorys = () => {
                             <br />
                         </div>
                     </div>
-
-
-
                     <div className="widget-payment-request-actions m-t-md d-flex">
                         <a onClick={handleChangeCategory} className="btn btn-primary flex-grow-1 m-l-xxs">Add Category</a>
                     </div>

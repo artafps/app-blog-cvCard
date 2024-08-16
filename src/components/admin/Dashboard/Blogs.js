@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import cfg from '../../../Config.json'
 import { useNavigate } from "react-router";
-const  Blogs= () => {
+const Blogs = () => {
     const navigate = useNavigate()
     const handleGetFileContent = async (fileUrl) => {
         try {
@@ -14,7 +14,7 @@ const  Blogs= () => {
             return response.data; // محتوای فایل در اینجا بازگردانده می‌شود
         } catch (error) {
             console.error('Error fetching file content:', error);
-            if(error.response.status===401){
+            if (error.response.status === 401) {
                 localStorage.clear()
                 navigate(`${cfg.imgURI}/login`)
             }
@@ -39,7 +39,7 @@ const  Blogs= () => {
             toast.success('File Deleted Successfully!')
         }).catch(err => {
             console.error("Error deleting file:", err);
-            if(err.response.status===401){
+            if (err.response.status === 401) {
                 localStorage.clear()
                 navigate(`${cfg.imgURI}/login`)
             }
@@ -54,9 +54,9 @@ const  Blogs= () => {
     const Lang = localStorage.getItem('selectLanguage');
 
 
-    const configNameFile =`Config-Web-${Lang}.json`
+    const configNameFile = `Config-Web-${Lang}.json`
 
-    
+
 
     const [ONCHANGESAVE, setONCHANGESAVE] = useState(false);
     const [Sha, setSha] = useState('');
@@ -99,7 +99,7 @@ const  Blogs= () => {
             })
         }).catch(err => {
             console.error("Error getting file list:", err);
-            if(err.response.status===401){
+            if (err.response.status === 401) {
                 localStorage.clear()
                 navigate(`${cfg.imgURI}/login`)
             }
@@ -125,7 +125,7 @@ const  Blogs= () => {
         } catch (error) {
             console.error('Error editing file:', error);
             toast.error('Error editing file!')
-            if(error.response.status===401){
+            if (error.response.status === 401) {
                 localStorage.clear()
                 navigate(`${cfg.imgURI}/login`)
             }
@@ -169,10 +169,29 @@ const  Blogs= () => {
             setONCHANGESAVE(false)
         }
     }
+    const [STATUSBlog, setSTATUSBlog] = useState();
+    const handleChangeSTATUSBlog = async (events) => {
+        let Data = localStorage.getItem('DATAGITBACK')
+        if (Data === null) {
+            DATAGITARRY.Blog.Status = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(DATAGITARRY))
+            setSTATUSBlog(events)
+        } else {
+            const newData = JSON.parse(Data)
+            newData.Blog.Status = String(events)
+            localStorage.setItem('DATAGITBACK', JSON.stringify(newData))
+            setSTATUSBlog(events)
+        }
+        Data = localStorage.getItem('DATAGITBACK')
+        if (JSON.stringify(DATAGITARRY) !== Data) {
+            setONCHANGESAVE(true)
+        } else {
+            setONCHANGESAVE(false)
+        }
+    }
 
-
-    return ( <Dashboard title='Blogs' disc='Editing the blog section'>
-  {ONCHANGESAVE ? <div class="card" >
+    return (<Dashboard title='Blogs' disc='Editing the blog section'>
+        {ONCHANGESAVE ? <div class="card" >
             <div class="card-body" style={{ display: "flex", justifyContent: 'space-between' }}><div>Click the Save button to save the information ؟</div>
                 <div>
                     <button onClick={HANDLESAVE} type="button" class="btn btn-outline-success m-2">Save</button>
@@ -181,17 +200,20 @@ const  Blogs= () => {
                         setONCHANGESAVE(false)
                     }} type="button" class="btn btn-outline-danger">Return</button></div></div></div>
             : null}
-<div className="card">
+        <div className="card">
             <div className=" widget widget-payment-request"><div className="card-header">
                 <h5 className="card-title">Blog Title</h5>
             </div>
                 <div className="card-body">
-                    
+                    <div class="form-check form-switch">
+                        <input checked={STATUSBlog} onChange={() => handleChangeSTATUSBlog(!STATUSBlog)} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Do you want this section to be displayed on the site?</label>
+                    </div>
                     <br />
                     <label class="form-check-label" >Blog Title </label>
                     <input value={TEXT} onChange={e => handleChangeBLOGTITLE(e.target.value)} type="text" class="form-control" placeholder="Blog Title " aria-label="Username" aria-describedby="basic-addon1" />
 
-                    
+
 
                 </div>
             </div>
