@@ -145,16 +145,29 @@ const HeaderSAndFooterS = () => {
             } else {
                 setSTATUSFOOTER(true)
             }
-
+            if (DATAGIT.Community.Status === "") {
+                setSTAUSCommunity(false)
+            } else if (DATAGIT.Community.Status === "false") {
+                setSTAUSCommunity(false)
+            } else {
+                setSTAUSCommunity(true)
+            }
+            if (DATAGIT.Footer.PowerBy.Status === "") {
+                setSTAUSPOWERBY(false)
+            } else if (DATAGIT.Footer.PowerBy.Status === "false") {
+                setSTAUSPOWERBY(false)
+            } else {
+                setSTAUSPOWERBY(true)
+            }
             setTITLEHEADER(DATAGIT.Header.Logo.Title)
             setTITLEFOOTER(DATAGIT.Footer.Logo.Title)
             setTEXTFOOTER(DATAGIT.Footer.Logo.Text)
             setSOCIALMEDIALISTHEADER(DATAGIT.Header.Social)
             setSOCIALMEDIALISTFOOTER(DATAGIT.Footer.Social)
-            setSTAUSPOWERBY(DATAGIT.Footer.PowerBy.Status)
+           
             setPOWERBYNAME(DATAGIT.Footer.PowerBy.Text)
             setPOWERBYLINK(DATAGIT.Footer.PowerBy.Link)
-            setSTAUSCommunity(DATAGIT.Community.Status)
+          
             setTextCommunity(DATAGIT.Community.Text)
             setBtnTextCommunity(DATAGIT.Community.BtnText)
             setLinkBtnCommunity(DATAGIT.Community.LinkBtn)
